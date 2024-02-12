@@ -7,19 +7,19 @@
 
 import Foundation
 
-struct RedditListing: Codable {
-    let data: RedditListingData
+struct RedditAPIResponse: Codable {
+    let data: RedditAPIResponseData
 }
 
-struct RedditListingData: Codable {
-    let children: [RedditPostContainer]
+struct RedditAPIResponseData: Codable {
+    let children: [RedditAPIResponseChildren]
 }
 
-struct RedditPostContainer: Codable {
-    let data: RedditPostData
+struct RedditAPIResponseChildren: Codable {
+    let data: RedditAPIPostData
 }
 
-struct RedditPostData: Codable {
+struct RedditAPIPostData: Codable {
     let title: String
     let author_fullname: String
     let domain: String
@@ -27,36 +27,39 @@ struct RedditPostData: Codable {
     let ups: Int
     let downs: Int
     let num_comments: Int
-    let preview: Preview?
+    let preview: RedditAPIPreview?
 }
 
-struct Preview: Codable {
-    let images: [Image]
+struct RedditAPIPreview: Codable {
+    let images: [RedditAPIImages]
 }
 
-struct Image: Codable {
-    let source: Source
+struct RedditAPIImages: Codable {
+    let source: RedditAPISourceImage
 }
 
-struct Source: Codable {
+struct RedditAPISourceImage: Codable {
     let url: String
 }
 
 
 //{
+//    "data": {
+//        "children": [
+//            {
 //                "data": {
 //                    "author_fullname": "t2_2llnenyz",
-//                    "title": "Apple, please add",
+//                    "title": "Apple, please add gradually increasing volume for Alarms. There is no excuse to not have such a simple feature in 2024!",
 //                    "downs": 0,
-//                    "domain": "i.redd.it",
 //                    "ups": 1087,
-//                    "created_utc": 1707561224,
 //                    "preview": {
 //                        "images": [
 //                            {
 //                                "source": {
-//                                    "url": "https://preview.redd.it/4c3ktvkljqhc1.png?auto=webp&amp;s=01caf635ab0638b9c2f4cd554a26f12632d52497"
+//                                    "url": "https://preview.redd.it/4c3ktvkljqhc1.png?auto=webp&amp;s=01caf635ab0638b9c2f4cd554a26f12632d52497",
 //                                },
+//                            }
+//                        ],
 //                    },
 //                }
 //            }
