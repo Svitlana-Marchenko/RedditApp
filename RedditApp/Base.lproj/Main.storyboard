@@ -129,24 +129,24 @@
                                         </constraints>
                                     </view>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bvx-UR-L6R">
-                                        <rect key="frame" x="0.0" y="70" width="414" height="200"/>
+                                        <rect key="frame" x="8" y="70" width="398" height="200"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="200" id="db5-Op-kuy"/>
                                         </constraints>
                                     </imageView>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemGray2Color"/>
+                                <color key="backgroundColor" name="background"/>
                                 <constraints>
                                     <constraint firstItem="iaZ-DQ-CPe" firstAttribute="leading" secondItem="9Bd-3P-bfz" secondAttribute="leading" id="3NF-hk-XLk"/>
                                     <constraint firstAttribute="trailing" secondItem="iaZ-DQ-CPe" secondAttribute="trailing" id="FOc-qN-1aP"/>
                                     <constraint firstItem="bvx-UR-L6R" firstAttribute="top" secondItem="iaZ-DQ-CPe" secondAttribute="bottom" id="ITs-eU-pcr"/>
-                                    <constraint firstItem="bvx-UR-L6R" firstAttribute="leading" secondItem="9Bd-3P-bfz" secondAttribute="leading" id="P8Z-jg-8La"/>
+                                    <constraint firstItem="bvx-UR-L6R" firstAttribute="leading" secondItem="9Bd-3P-bfz" secondAttribute="leading" constant="8" id="Jsj-Z4-4hn"/>
+                                    <constraint firstAttribute="trailing" secondItem="bvx-UR-L6R" secondAttribute="trailing" constant="8" id="Vgk-3W-tA3"/>
                                     <constraint firstAttribute="trailing" secondItem="iaZ-DQ-CPe" secondAttribute="trailing" id="b9k-zN-iQM"/>
                                     <constraint firstItem="LR4-c5-Aky" firstAttribute="leading" secondItem="9Bd-3P-bfz" secondAttribute="leading" id="ces-VF-94v"/>
                                     <constraint firstItem="LR4-c5-Aky" firstAttribute="top" secondItem="bvx-UR-L6R" secondAttribute="bottom" id="gGX-1e-7gf"/>
                                     <constraint firstAttribute="trailing" secondItem="LR4-c5-Aky" secondAttribute="trailing" id="u8j-4p-o2t"/>
                                     <constraint firstItem="iaZ-DQ-CPe" firstAttribute="top" secondItem="9Bd-3P-bfz" secondAttribute="top" id="wrK-rh-xJZ"/>
-                                    <constraint firstAttribute="trailing" secondItem="bvx-UR-L6R" secondAttribute="trailing" id="xp4-xP-7Y3"/>
                                     <constraint firstAttribute="height" constant="300" id="yoT-fF-iOx"/>
                                     <constraint firstItem="iaZ-DQ-CPe" firstAttribute="leading" secondItem="9Bd-3P-bfz" secondAttribute="leading" id="zla-uY-trX"/>
                                 </constraints>
@@ -185,14 +185,11 @@
         <image name="message.badge" catalog="system" width="128" height="122"/>
         <image name="paperplane" catalog="system" width="128" height="119"/>
         <namedColor name="background">
-            <color red="0.63822015197055104" green="0.55196275635977088" blue="0.87616237229907634" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.6380000114440918" green="0.55199998617172241" blue="0.87599998712539673" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <namedColor name="icon">
-            <color red="0.42845689986774688" green="0.11379456656897785" blue="0.72569668170103085" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.42800000309944153" green="0.11400000005960464" blue="0.72600001096725464" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
-        <systemColor name="systemGray2Color">
-            <color red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
         <systemColor name="systemGray6Color">
             <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

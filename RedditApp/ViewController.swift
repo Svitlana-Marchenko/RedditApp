@@ -30,7 +30,7 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         Task {
-                    let post = await networkRequest.fetchPost(subreddit: "dog", limit: 1, after: "")
+                    let post = await networkRequest.fetchPost(subreddit: "ios", limit: 1, after: "")
                     if let post = post {
                         self.postUsername.text = post.username
                         self.postTitle.text = post.title
