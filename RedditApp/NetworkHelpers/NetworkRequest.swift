@@ -7,23 +7,18 @@
 
 import Foundation
 
-class NetworkRequest {
-//    func buildURL(subreddit: String, params: [String: String]) -> URL? {
-//        var components = URLComponents(string: "https://www.reddit.com/r/\(subreddit)/top.json")
-//        components?.queryItems = params.map { URLQueryItem(name: $0.key, value: $0.value) }
-//        return components?.url
-//    }
+struct NetworkRequest {
     
-    func buildURL (subreddit: String, params: [String: String]) -> URL? {
-        guard let link = URL(string:"https://www.reddit.com/r/\(subreddit)/top.json") else {return nil}
+    func buildURL (subreddit: String, params: [String: String]) throws-> URL {
+        guard let link = URL(string:"https://www.reddit.com/r/\(subreddit)/top.json") else {throw URLError(message: "error with url")}
         let queryItems = params.map { URLQueryItem(name: $0.key, value: $0.value) }
         return link.appending(queryItems: queryItems)
     }
     
-    func fetchPost(subreddit: String, limit: Int = 1, after: String) async -> Post? {
-        guard let url = buildURL(subreddit: subreddit, params: ["limit": String(limit), "after": String(after)]) else { return nil }
-        
+    
+    func fetchPost(subreddit: String, limit: Int = 1, after: String = "") async throws -> Post? {
         do {
+            let url = try buildURL(subreddit: subreddit, params: ["limit": String(limit), "after": String(after)])
             let data = try await URLSession.shared.data(from: url)
             let redditData = try JSONDecoder().decode(RedditAPIResponse.self, from: data.0)
 
@@ -32,9 +27,11 @@ class NetworkRequest {
             
         } catch {
             print("error in: \(error)")
-            return nil
+            throw error
         }
     }
-    
-    
+}
+
+struct URLError: Error {
+    let message: String
 }

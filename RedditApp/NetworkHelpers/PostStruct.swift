@@ -20,7 +20,6 @@ struct Post: Codable {
     init(from redditPostData: RedditAPIPostData) {
         
         let imageURL = redditPostData.preview?.images.first?.source.url.replacing("&amp;", with: "&") ?? ""
-        
         self.username = redditPostData.author_fullname
         self.domain = redditPostData.domain
         self.title = redditPostData.title

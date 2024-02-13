@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina4_0" orientation="portrait" appearance="light"/>
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
@@ -9,40 +9,40 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Post View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="RedditApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="PostViewController" customModule="RedditApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Bd-3P-bfz">
-                                <rect key="frame" x="0.0" y="144" width="320" height="300"/>
+                                <rect key="frame" x="0.0" y="288.66666666666669" width="393" height="300.00000000000006"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iaZ-DQ-CPe">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="70"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y5f-Nk-Slt">
-                                                <rect key="frame" x="105" y="2" width="76" height="20.5"/>
+                                                <rect key="frame" x="178" y="2" width="76" height="20.333333333333332"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NhW-DJ-cN8">
-                                                <rect key="frame" x="8" y="25.5" width="312" height="23"/>
+                                                <rect key="frame" x="8" y="25.333333333333314" width="385" height="23"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wZf-Y4-qmG">
-                                                <rect key="frame" x="201" y="2" width="34" height="21"/>
+                                                <rect key="frame" x="274" y="2" width="34" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="domain" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nLj-XO-fbQ">
-                                                <rect key="frame" x="255" y="2" width="57" height="21"/>
+                                                <rect key="frame" x="328" y="2" width="57" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -64,10 +64,10 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LR4-c5-Aky">
-                                        <rect key="frame" x="0.0" y="270" width="320" height="30"/>
+                                        <rect key="frame" x="0.0" y="269.99999999999994" width="393" height="30"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S65-W0-LQF">
-                                                <rect key="frame" x="265.5" y="2.5" width="46.5" height="25"/>
+                                                <rect key="frame" x="338.66666666666669" y="2.3333333333333712" width="46.333333333333314" height="25"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="25" id="9EG-qi-XBZ"/>
                                                 </constraints>
@@ -75,7 +75,7 @@
                                                 <buttonConfiguration key="configuration" style="plain" image="bookmark" catalog="system" title=""/>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gcD-qN-dtg">
-                                                <rect key="frame" x="210" y="2.5" width="50.5" height="25"/>
+                                                <rect key="frame" x="283" y="2.3333333333333712" width="50.666666666666686" height="25"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="25" id="73O-rp-RlN"/>
                                                 </constraints>
@@ -83,7 +83,7 @@
                                                 <buttonConfiguration key="configuration" style="plain" image="paperplane" catalog="system" title=""/>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I1u-9l-5KG">
-                                                <rect key="frame" x="38.5" y="2.5" width="50.5" height="25"/>
+                                                <rect key="frame" x="111.66666666666667" y="2.3333333333333712" width="50.333333333333329" height="25"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="25" id="NnJ-CO-svW"/>
                                                 </constraints>
@@ -91,13 +91,13 @@
                                                 <buttonConfiguration key="configuration" style="plain" image="heart" catalog="system" title=""/>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="cNum" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OAO-gE-PAB">
-                                                <rect key="frame" x="174" y="8.5" width="31" height="13"/>
+                                                <rect key="frame" x="247" y="8.3333333333333712" width="31" height="13"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7QH-Q9-0Fc">
-                                                <rect key="frame" x="122" y="2.5" width="52" height="25"/>
+                                                <rect key="frame" x="195" y="2.3333333333333712" width="52" height="25"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="25" id="fgi-Ki-wcw"/>
                                                 </constraints>
@@ -105,7 +105,7 @@
                                                 <buttonConfiguration key="configuration" style="plain" image="message.badge" catalog="system" title=""/>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="lNum" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i9d-Sk-MVc">
-                                                <rect key="frame" x="89" y="8" width="28" height="14"/>
+                                                <rect key="frame" x="162" y="8" width="28" height="14"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -131,7 +131,7 @@
                                         </constraints>
                                     </view>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bvx-UR-L6R">
-                                        <rect key="frame" x="8" y="70" width="304" height="200"/>
+                                        <rect key="frame" x="8" y="70" width="377" height="200"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="200" id="db5-Op-kuy"/>
                                         </constraints>
@@ -163,17 +163,17 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="commentButton" destination="7QH-Q9-0Fc" id="caU-cT-TTU"/>
-                        <outlet property="commentLabel" destination="OAO-gE-PAB" id="7ex-lc-LOX"/>
-                        <outlet property="likeButton" destination="I1u-9l-5KG" id="hKg-tN-m6D"/>
-                        <outlet property="likeLabel" destination="i9d-Sk-MVc" id="YaR-hn-wOH"/>
-                        <outlet property="postDomain" destination="nLj-XO-fbQ" id="IhZ-fx-UAP"/>
-                        <outlet property="postImage" destination="bvx-UR-L6R" id="Lww-hp-txx"/>
-                        <outlet property="postTime" destination="wZf-Y4-qmG" id="K3y-YY-U6N"/>
-                        <outlet property="postTitle" destination="NhW-DJ-cN8" id="pSM-i2-U9Z"/>
-                        <outlet property="postUsername" destination="y5f-Nk-Slt" id="mog-yF-rob"/>
-                        <outlet property="saveButton" destination="S65-W0-LQF" id="bVg-M3-voK"/>
-                        <outlet property="shareButton" destination="gcD-qN-dtg" id="aJE-PN-xix"/>
+                        <outlet property="postComment" destination="7QH-Q9-0Fc" id="k4l-bB-3DQ"/>
+                        <outlet property="postCommentNum" destination="OAO-gE-PAB" id="Gh6-Lf-hH7"/>
+                        <outlet property="postDomain" destination="nLj-XO-fbQ" id="c5l-D8-S9i"/>
+                        <outlet property="postImage" destination="bvx-UR-L6R" id="WRb-xM-qsW"/>
+                        <outlet property="postLike" destination="I1u-9l-5KG" id="Tb2-j5-okf"/>
+                        <outlet property="postLikeNumber" destination="i9d-Sk-MVc" id="aWx-cU-X40"/>
+                        <outlet property="postSave" destination="S65-W0-LQF" id="gJJ-J4-ySc"/>
+                        <outlet property="postShare" destination="gcD-qN-dtg" id="Uai-dO-502"/>
+                        <outlet property="postTime" destination="wZf-Y4-qmG" id="DyB-vx-GyY"/>
+                        <outlet property="postTitle" destination="NhW-DJ-cN8" id="Fus-I0-R7i"/>
+                        <outlet property="postUsername" destination="y5f-Nk-Slt" id="dXT-7w-A8U"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

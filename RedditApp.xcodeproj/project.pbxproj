@@ -18,6 +18,7 @@
 		EAB7914A2B78EC1A00A5CE15 /* APIStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB791492B78EC1A00A5CE15 /* APIStruct.swift */; };
 		EAF4C7052B7911B800D1CFAA /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = EAF4C7042B7911B800D1CFAA /* SDWebImage */; };
 		EAF4C7072B7911B800D1CFAA /* SDWebImageMapKit in Frameworks */ = {isa = PBXBuildFile; productRef = EAF4C7062B7911B800D1CFAA /* SDWebImageMapKit */; };
+		EAF4C70D2B7AD68B00D1CFAA /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAF4C70C2B7AD68B00D1CFAA /* PostViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		EA62E5D22B7828F7004AA4F1 /* NetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
 		EA62E5D42B782D32004AA4F1 /* PostStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostStruct.swift; sourceTree = "<group>"; };
 		EAB791492B78EC1A00A5CE15 /* APIStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIStruct.swift; sourceTree = "<group>"; };
+		EAF4C70C2B7AD68B00D1CFAA /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +76,7 @@
 				EA203D372B763CBE00C077B4 /* Assets.xcassets */,
 				EA203D392B763CBE00C077B4 /* LaunchScreen.storyboard */,
 				EA203D3C2B763CBE00C077B4 /* Info.plist */,
+				EAF4C70C2B7AD68B00D1CFAA /* PostViewController.swift */,
 			);
 			path = RedditApp;
 			sourceTree = "<group>";
@@ -168,6 +171,7 @@
 			files = (
 				EA203D332B763CBC00C077B4 /* ViewController.swift in Sources */,
 				EA203D2F2B763CBC00C077B4 /* AppDelegate.swift in Sources */,
+				EAF4C70D2B7AD68B00D1CFAA /* PostViewController.swift in Sources */,
 				EA62E5D32B7828F7004AA4F1 /* NetworkRequest.swift in Sources */,
 				EAB7914A2B78EC1A00A5CE15 /* APIStruct.swift in Sources */,
 				EA203D312B763CBC00C077B4 /* SceneDelegate.swift in Sources */,
