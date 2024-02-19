@@ -29,7 +29,7 @@ class PostViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         Task {
-            let post = try await NetworkRequest().fetchPost(subreddit: "ios", limit: 1, after: "")
+            let post = try await NetworkRequest().fetchPost(subreddit: "ios", after: "")
             if let post = post {
                 DispatchQueue.main.async {
                     self.postUsername.text = post.username

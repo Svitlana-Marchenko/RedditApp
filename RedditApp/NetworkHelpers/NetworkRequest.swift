@@ -16,14 +16,43 @@ struct NetworkRequest {
     }
     
     
-    func fetchPost(subreddit: String, limit: Int = 1, after: String = "") async throws -> Post? {
+    func fetchPost(subreddit: String, after: String = "") async throws -> Post? {
         do {
-            let url = try buildURL(subreddit: subreddit, params: ["limit": String(limit), "after": String(after)])
+            let url = try buildURL(subreddit: subreddit, params: ["limit": String(1), "after": String(after)])
             let data = try await URLSession.shared.data(from: url)
             let redditData = try JSONDecoder().decode(RedditAPIResponse.self, from: data.0)
 
             guard let postAPIData = redditData.data.children.first?.data else { return nil }
             return Post(from: postAPIData)
+            
+        } catch {
+            print("error in: \(error)")
+            throw error
+        }
+    }
+    
+    func fetchPosts(subreddit: String, limit: Int = 1, after: String = "") async throws -> ([Post]?, String?) {
+        do {
+            let url = try buildURL(subreddit: subreddit, params: ["limit": String(limit), "after": String(after)])
+           
+            let (data, _) = try await URLSession.shared.data(from: url)
+
+            guard let redditData = try? JSONDecoder().decode(RedditAPIResponse.self, from: data) else {
+                return ([], nil)
+            }
+                    
+
+            var posts: [Post] = []
+            //let after = redditData.data.after
+            
+            for child in redditData.data.children {
+                let postData = child.data
+                let post = Post(from: postData)
+                posts.append(post)
+                }
+            
+            
+            return (posts, redditData.data.after)
             
         } catch {
             print("error in: \(error)")
