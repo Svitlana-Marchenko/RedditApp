@@ -37,13 +37,11 @@ struct NetworkRequest {
            
             let (data, _) = try await URLSession.shared.data(from: url)
 
-            guard let redditData = try? JSONDecoder().decode(RedditAPIResponse.self, from: data) else {
-                return ([], nil)
-            }
+            let redditData = try JSONDecoder().decode(RedditAPIResponse.self, from: data)// else {
+              //  return ([], nil)
+            //}
                     
-
             var posts: [Post] = []
-            //let after = redditData.data.after
             
             for child in redditData.data.children {
                 let postData = child.data
