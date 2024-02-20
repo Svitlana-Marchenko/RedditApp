@@ -9,7 +9,6 @@ import UIKit
 
 class PostListViewController: UIViewController {
     
-    // MARK: - Const
     struct Const {
         static let cellIdentifier = "post_cell"
         static let postDetailsSegueID = "post_details"
@@ -74,14 +73,12 @@ class PostListViewController: UIViewController {
         default: break
         }
     }
-    
-    
 }
 
-extension PostListViewController: UITableViewDataSource, UITableViewDelegate {
+extension PostListViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-     return 1
+        return 1
     }
     
     func tableView(
@@ -101,7 +98,8 @@ extension PostListViewController: UITableViewDataSource, UITableViewDelegate {
         return cell
         
     }
-    
+}
+extension PostListViewController : UITableViewDelegate{
     func tableView(
         _ tableView: UITableView,
         didSelectRowAt indexPath: IndexPath

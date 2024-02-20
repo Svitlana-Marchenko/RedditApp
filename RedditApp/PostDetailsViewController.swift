@@ -25,16 +25,17 @@ class PostDetailsViewController : UIViewController {
         
         let defaultImage = UIImage(systemName: "questionmark.circle")
         if post.imageURL != "" {
+            self.postView.postImage.contentMode = .scaleAspectFill
             self.postView.postImage.sd_setImage(with: URL(string: post.imageURL)) { (image, error, _, _) in
                 if error != nil {
                     self.postView.postImage.image = defaultImage
-                    self.postView.contentMode = .scaleAspectFit
+                    self.postView.postImage.contentMode = .scaleAspectFit
                     print ("Error while fetching image url")
                 }
             }
         } else {
             self.postView.postImage.image = defaultImage
-            self.postView.contentMode = .scaleAspectFit
+            self.postView.postImage.contentMode = .scaleAspectFit
         }
     }
     
