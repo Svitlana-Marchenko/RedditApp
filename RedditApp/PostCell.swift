@@ -13,6 +13,10 @@ class PostCell: UITableViewCell{
     
     @IBOutlet weak var postView: PostView!
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+    }
+    
     func configure (post: Post){
         self.postView.postUsername.text = post.username
         self.postView.postTitle.text = post.title

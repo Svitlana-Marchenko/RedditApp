@@ -15,6 +15,7 @@
 		EA203D3B2B763CBE00C077B4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA203D392B763CBE00C077B4 /* LaunchScreen.storyboard */; };
 		EA62E5D32B7828F7004AA4F1 /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA62E5D22B7828F7004AA4F1 /* NetworkRequest.swift */; };
 		EA62E5D52B782D32004AA4F1 /* PostStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA62E5D42B782D32004AA4F1 /* PostStruct.swift */; };
+		EA66D3942B84A32F00BA02F6 /* PostDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA66D3932B84A32F00BA02F6 /* PostDetailsViewController.swift */; };
 		EAB7914A2B78EC1A00A5CE15 /* APIStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB791492B78EC1A00A5CE15 /* APIStruct.swift */; };
 		EACC6EA92B8360CA00537EC2 /* PostListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EACC6EA82B8360CA00537EC2 /* PostListViewController.swift */; };
 		EACC6EAB2B836E5B00537EC2 /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EACC6EAA2B836E5B00537EC2 /* PostCell.swift */; };
@@ -36,6 +37,7 @@
 		EA203D3C2B763CBE00C077B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EA62E5D22B7828F7004AA4F1 /* NetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
 		EA62E5D42B782D32004AA4F1 /* PostStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostStruct.swift; sourceTree = "<group>"; };
+		EA66D3932B84A32F00BA02F6 /* PostDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailsViewController.swift; sourceTree = "<group>"; };
 		EAB791492B78EC1A00A5CE15 /* APIStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIStruct.swift; sourceTree = "<group>"; };
 		EACC6EA82B8360CA00537EC2 /* PostListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListViewController.swift; sourceTree = "<group>"; };
 		EACC6EAA2B836E5B00537EC2 /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 				EAE984922B827E7F004BB4B5 /* PostView.xib */,
 				EACC6EA82B8360CA00537EC2 /* PostListViewController.swift */,
 				EACC6EAA2B836E5B00537EC2 /* PostCell.swift */,
+				EA66D3932B84A32F00BA02F6 /* PostDetailsViewController.swift */,
 			);
 			path = RedditApp;
 			sourceTree = "<group>";
@@ -192,6 +195,7 @@
 				EA203D312B763CBC00C077B4 /* SceneDelegate.swift in Sources */,
 				EA62E5D52B782D32004AA4F1 /* PostStruct.swift in Sources */,
 				EACC6EAB2B836E5B00537EC2 /* PostCell.swift in Sources */,
+				EA66D3942B84A32F00BA02F6 /* PostDetailsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

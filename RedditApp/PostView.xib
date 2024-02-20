@@ -32,6 +32,7 @@
             <subviews>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wlQ-fR-a0C">
                     <rect key="frame" x="0.0" y="129" width="442" height="200"/>
+                    <color key="tintColor" name="icon"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="200" id="H9c-dA-egG"/>
                     </constraints>

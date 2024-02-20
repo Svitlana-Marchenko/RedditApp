@@ -9,23 +9,34 @@ import UIKit
 
 class PostListViewController: UIViewController {
     
+    // MARK: - Const
+    struct Const {
+        static let cellIdentifier = "post_cell"
+        static let postDetailsSegueID = "post_details"
+    }
     
     private var listOfPost = [Post]()
+    private var selectedPost: Post?
     
-    private let cellIdentifier = "post_cell"
     private let subreddit="ios"
     private let limit=10
-    var after:String? = ""
-    var isLoadingMore = false
+    
+    private let pToDeload = 600
+    
+    private var after:String? = ""
+    private var isLoadingMore = false
     
     
+    @IBOutlet weak var postSubreddit: UILabel!
     @IBOutlet weak var postTable: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        postTable.estimatedRowHeight = 310
-        postTable.rowHeight = 310
+        self.postTable.estimatedRowHeight = 310
+        self.postTable.rowHeight = 310
+        
+        self.postSubreddit.text=self.subreddit
         
         self.isLoadingMore = true
         
@@ -47,6 +58,24 @@ class PostListViewController: UIViewController {
         self.postTable.delegate = self
         self.postTable.dataSource=self
     }
+    
+    override func prepare(
+        for segue: UIStoryboardSegue,
+        sender: Any?
+    ) {
+        switch segue.identifier {
+        case Const.postDetailsSegueID:
+            let nextVc = segue.destination as! PostDetailsViewController
+            DispatchQueue.main.async {
+                if let post = self.selectedPost {
+                    nextVc.configure(post: post)
+                }
+            }
+        default: break
+        }
+    }
+    
+    
 }
 
 extension PostListViewController: UITableViewDataSource, UITableViewDelegate {
@@ -66,27 +95,31 @@ extension PostListViewController: UITableViewDataSource, UITableViewDelegate {
         _ tableView: UITableView,
         cellForRowAt indexPath: IndexPath
     ) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! PostCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: Const.cellIdentifier, for: indexPath) as! PostCell
         let rowData = listOfPost[indexPath.row]
         cell.configure(post: rowData)
         return cell
         
     }
     
-    //    func tableView(
-    //        _ tableView: UITableView,
-    //        didSelectRowAt indexPath: IndexPath
-    //    ) {
-    //
-    //    }
-    //
+    func tableView(
+        _ tableView: UITableView,
+        didSelectRowAt indexPath: IndexPath
+    ) {
+        self.selectedPost = self.listOfPost[indexPath.row]
+        self.performSegue(
+            withIdentifier: Const.postDetailsSegueID,
+            sender: nil
+        )
+    }
+    
    func scrollViewDidScroll(_ scrollView: UIScrollView) {
        
        let offsetY = scrollView.contentOffset.y
        let contentHeight = scrollView.contentSize.height
        let screenHeight = scrollView.frame.size.height
 
-       if !isLoadingMore && offsetY > contentHeight - screenHeight - 600  {
+       if !isLoadingMore && offsetY > contentHeight - screenHeight - CGFloat(pToDeload)  {
            self.isLoadingMore = true
            Task {
                
