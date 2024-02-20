@@ -25,7 +25,7 @@ class PostCell: UITableViewCell{
         self.postView.postDomain.text = post.domain
         self.postView.postCommentNum.text = String(post.num_comments)
         self.postView.postLikesNum.text = String(post.rating)
-        self.postView.postSaveButton.setImage(post.isSaved ? UIImage.init(systemName: "bookmark"): UIImage.init(systemName: "bookmark.fill"), for: .normal)
+        self.postView.postSaveButton.setImage(post.isSaved ? UIImage.init(systemName: "bookmark.fill"): UIImage.init(systemName: "bookmark"), for: .normal)
         
         let defaultImage = UIImage(systemName: "questionmark.circle")
         if post.imageURL != "" {
