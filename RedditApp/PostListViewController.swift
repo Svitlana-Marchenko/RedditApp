@@ -137,7 +137,5 @@ extension PostListViewController : UITableViewDelegate{
                
            }
        }
-       
     }
 }
-

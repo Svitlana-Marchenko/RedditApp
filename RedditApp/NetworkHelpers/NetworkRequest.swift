@@ -34,13 +34,11 @@ struct NetworkRequest {
     func fetchPosts(subreddit: String, limit: Int = 1, after: String = "") async throws -> ([Post]?, String?) {
         do {
             let url = try buildURL(subreddit: subreddit, params: ["limit": String(limit), "after": String(after)])
+            print(url)
            
             let (data, _) = try await URLSession.shared.data(from: url)
 
-            let redditData = try JSONDecoder().decode(RedditAPIResponse.self, from: data)// else {
-              //  return ([], nil)
-            //}
-                    
+            let redditData = try JSONDecoder().decode(RedditAPIResponse.self, from: data)
             var posts: [Post] = []
             
             for child in redditData.data.children {
@@ -48,7 +46,6 @@ struct NetworkRequest {
                 let post = Post(from: postData)
                 posts.append(post)
                 }
-            
             
             return (posts, redditData.data.after)
             
