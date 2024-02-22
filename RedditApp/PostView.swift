@@ -10,25 +10,22 @@ import UIKit
 class PostView: UIView {
     let kCONTENT_XIB_NAME = "PostView"
 
+    @IBOutlet private var contentView: UIView!
     
+    @IBOutlet private weak var postImage: UIImageView!
     
-    @IBOutlet var contentView: UIView!
+    @IBOutlet private weak var postTitle: UILabel!
+    @IBOutlet private weak var postTime: UILabel!
+    @IBOutlet private weak var postUsername: UILabel!
     
+    @IBOutlet private weak var postDomain: UILabel!
+    @IBOutlet private weak var postCommentNum: UILabel!
+    @IBOutlet private weak var postLikesNum: UILabel!
     
-    @IBOutlet weak var postImage: UIImageView!
-    
-    @IBOutlet weak var postTitle: UILabel!
-    @IBOutlet weak var postTime: UILabel!
-    @IBOutlet weak var postUsername: UILabel!
-    
-    @IBOutlet weak var postDomain: UILabel!
-    @IBOutlet weak var postCommentNum: UILabel!
-    @IBOutlet weak var postLikesNum: UILabel!
-    
-    @IBOutlet weak var postShareButton: UIButton!
-    @IBOutlet weak var postCommentButton: UIButton!
-    @IBOutlet weak var postSaveButton: UIButton!
-    @IBOutlet weak var postLikeButton: UIButton!
+    @IBOutlet private weak var postShareButton: UIButton!
+    @IBOutlet private weak var postCommentButton: UIButton!
+    @IBOutlet private weak var postSaveButton: UIButton!
+    @IBOutlet private weak var postLikeButton: UIButton!
     
     override init(frame: CGRect) {
             super.init(frame: frame)
@@ -44,7 +41,35 @@ class PostView: UIView {
             Bundle.main.loadNibNamed(kCONTENT_XIB_NAME, owner: self, options: nil)
             contentView.fixInView(self)
         }
+    
+    func configure (post: Post){
+        self.postUsername.text = post.username
+        self.postTitle.text = post.title
+        self.postTime.text = post.time
+        self.postDomain.text = post.domain
+        self.postCommentNum.text = String(post.num_comments)
+        self.postLikesNum.text = String(post.rating)
+        self.postSaveButton.setImage(post.isSaved ? UIImage.init(systemName: "bookmark.fill"): UIImage.init(systemName: "bookmark"), for: .normal)
+        
+        let defaultImage = UIImage(systemName: "questionmark.circle")
+        if post.imageURL != "" {
+            self.postImage.sd_setImage(with: URL(string: post.imageURL)) { (image, error, _, _) in
+                if error != nil {
+                    self.postImage.image = defaultImage
+                    self.postImage.contentMode = .scaleAspectFit
+                    print ("Error while fetching image url")
+                }
+            }
+        } else {
+            self.postImage.image = defaultImage
+            self.postImage.contentMode = .scaleAspectFit
+        }
     }
+    
+    func prepareForCellReuse(){
+        self.postImage.contentMode = .scaleAspectFill
+    }
+}
     
 extension UIView
 {
