@@ -8,7 +8,9 @@
 import Foundation
 import UIKit
 
-struct SavedPostManager {
+struct PostManager {
+    
+    var listOfPost = [Post]()
     
     var path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("postdata.json")
     
