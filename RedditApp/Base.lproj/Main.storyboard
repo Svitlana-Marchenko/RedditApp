@@ -47,14 +47,25 @@
                                         <color key="tintColor" name="icon"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" image="bookmark" catalog="system" title=""/>
+                                        <connections>
+                                            <action selector="showSavedButtonTap:" destination="6rU-uU-b9I" eventType="touchUpInside" id="uIy-Dh-oEJ"/>
+                                        </connections>
                                     </button>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jnt-tN-Hqh">
+                                        <rect key="frame" x="8.0000000000000071" y="8" width="126.66666666666669" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
                                 </subviews>
                                 <color key="backgroundColor" name="background"/>
                                 <constraints>
+                                    <constraint firstItem="jnt-tN-Hqh" firstAttribute="centerY" secondItem="E8z-wd-4e0" secondAttribute="centerY" id="LqP-gx-l5e"/>
                                     <constraint firstItem="c6l-Ic-WGL" firstAttribute="centerY" secondItem="E8z-wd-4e0" secondAttribute="centerY" id="TRk-fS-Wai"/>
+                                    <constraint firstItem="c6l-Ic-WGL" firstAttribute="leading" secondItem="jnt-tN-Hqh" secondAttribute="trailing" constant="20" id="Ttr-SJ-zuJ"/>
                                     <constraint firstItem="c6l-Ic-WGL" firstAttribute="centerX" secondItem="E8z-wd-4e0" secondAttribute="centerX" id="WfK-yV-Jvg"/>
                                     <constraint firstAttribute="trailing" secondItem="KBX-c6-4wZ" secondAttribute="trailing" constant="20" id="Z2Y-uJ-GaA"/>
                                     <constraint firstItem="KBX-c6-4wZ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="c6l-Ic-WGL" secondAttribute="trailing" constant="8" symbolic="YES" id="cgz-ea-WjR"/>
+                                    <constraint firstItem="jnt-tN-Hqh" firstAttribute="leading" secondItem="E8z-wd-4e0" secondAttribute="leading" constant="8" id="vlh-6k-kkB"/>
                                     <constraint firstItem="KBX-c6-4wZ" firstAttribute="centerY" secondItem="E8z-wd-4e0" secondAttribute="centerY" id="z1L-Ce-A9R"/>
                                     <constraint firstAttribute="height" constant="50" id="z6s-6h-rft"/>
                                 </constraints>
@@ -101,6 +112,8 @@
                     <connections>
                         <outlet property="postSubreddit" destination="c6l-Ic-WGL" id="Q1Z-Ic-T2z"/>
                         <outlet property="postTable" destination="BBx-Ou-hv4" id="AjC-Iz-wfS"/>
+                        <outlet property="searchField" destination="jnt-tN-Hqh" id="iI3-bG-Shn"/>
+                        <outlet property="showSavedButton" destination="KBX-c6-4wZ" id="vDG-ep-wAg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HBM-JV-nvW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

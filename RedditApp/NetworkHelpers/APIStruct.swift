@@ -22,13 +22,15 @@ struct RedditAPIResponseChildren: Codable {
 
 struct RedditAPIPostData: Codable {
     let title: String
-    let author_fullname: String
+    let author_fullname: String?
     let domain: String
     let created_utc: Double
     let ups: Int
     let downs: Int
     let num_comments: Int
     let preview: RedditAPIPreview?
+    let permalink: String
+    let name: String
 }
 
 struct RedditAPIPreview: Codable {

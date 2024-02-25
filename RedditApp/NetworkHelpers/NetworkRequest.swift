@@ -34,7 +34,6 @@ struct NetworkRequest {
     func fetchPosts(subreddit: String, limit: Int = 1, after: String = "") async throws -> ([Post]?, String?) {
         do {
             let url = try buildURL(subreddit: subreddit, params: ["limit": String(limit), "after": String(after)])
-            print(url)
            
             let (data, _) = try await URLSession.shared.data(from: url)
 

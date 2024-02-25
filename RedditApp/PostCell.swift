@@ -11,7 +11,7 @@ import UIKit
 class PostCell: UITableViewCell{
     
     
-    @IBOutlet private weak var postView: PostView!
+    @IBOutlet weak var postView: PostView!
     
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -21,5 +21,5 @@ class PostCell: UITableViewCell{
     func configure (post: Post){
         self.postView.configure(post: post)
     }
-    
 }
+

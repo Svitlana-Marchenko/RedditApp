@@ -9,6 +9,8 @@ import UIKit
 
 class PostView: UIView {
     let kCONTENT_XIB_NAME = "PostView"
+    
+    weak var delegate: ShareButtonDelegate?
 
     @IBOutlet private var contentView: UIView!
     
@@ -27,6 +29,21 @@ class PostView: UIView {
     @IBOutlet private weak var postSaveButton: UIButton!
     @IBOutlet private weak var postLikeButton: UIButton!
     
+    var post: Post?
+    
+    
+    @IBAction func shareButtonTap(_ sender: Any) {
+        print("Tap share button")
+        
+        if let postToShare = post {
+            guard let url = URL(string: postToShare.url) else {return}
+            delegate?.didTapShareButton(url: url)
+        } else {
+            print("Error while getting post")
+            return
+        }
+    }
+    
     override init(frame: CGRect) {
             super.init(frame: frame)
             commonInit()
@@ -43,6 +60,8 @@ class PostView: UIView {
         }
     
     func configure (post: Post){
+        
+        self.post=post
         self.postUsername.text = post.username
         self.postTitle.text = post.title
         self.postTime.text = post.time
@@ -69,6 +88,9 @@ class PostView: UIView {
     func prepareForCellReuse(){
         self.postImage.contentMode = .scaleAspectFill
     }
+    
+
+    
 }
     
 extension UIView

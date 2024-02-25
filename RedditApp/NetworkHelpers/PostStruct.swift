@@ -14,20 +14,24 @@ struct Post: Codable {
     let title: String
     let imageURL: String
     let rating: Int
-    let isSaved: Bool
+    var isSaved: Bool
     let num_comments: Int
+    let url: String
+    let id: String
     
     init(from redditPostData: RedditAPIPostData) {
         
         let imageURL = redditPostData.preview?.images.first?.source.url.replacing("&amp;", with: "&") ?? ""
-        self.username = redditPostData.author_fullname
+        self.username = redditPostData.author_fullname ?? "unknow"
         self.domain = redditPostData.domain
         self.title = redditPostData.title
         self.imageURL = imageURL
         self.rating = redditPostData.ups - redditPostData.downs
-        self.isSaved = Bool.random()
+        self.isSaved = false
         self.num_comments = redditPostData.num_comments
         self.time = Post.convertTime(from: redditPostData.created_utc)
+        self.url = "https://www.reddit.com/"+redditPostData.permalink
+        self.id = redditPostData.name
     }
     
 

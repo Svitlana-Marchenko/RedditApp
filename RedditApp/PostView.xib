@@ -95,7 +95,10 @@
                             </constraints>
                             <color key="tintColor" name="icon"/>
                             <state key="normal" title="Button"/>
-                            <buttonConfiguration key="configuration" style="plain" image="paperplane" catalog="system" title=""/>
+                            <buttonConfiguration key="configuration" style="filled" image="paperplane" catalog="system" title=""/>
+                            <connections>
+                                <action selector="shareButtonTap:" destination="-1" eventType="touchUpInside" id="wTb-fF-LyL"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pUq-fH-FFT">
                             <rect key="frame" x="244" y="2.6666666666666856" width="52" height="25"/>
