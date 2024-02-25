@@ -1,5 +1,5 @@
 //
-//  SavedPostManager.swift
+//  PostManager.swift
 //  RedditApp
 //
 //  Created by Svitlana on 24.02.2024.
@@ -8,12 +8,16 @@
 import Foundation
 import UIKit
 
-struct PostManager {
+class PostManager {
     
     var listOfPost = [Post]()
     
-    var path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("postdata.json")
+    var savedPost = [Post]()
+    var allPost = [Post]()
     
+    static let manager = PostManager()
+    
+    var path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("postdata.json")
     
     
     func savePostsToFile(posts: [Post]) {
@@ -21,6 +25,17 @@ struct PostManager {
             let encoder = JSONEncoder()
             encoder.outputFormatting = .prettyPrinted
             let data = try encoder.encode(posts)
+            try data.write(to: path, options: .atomic)
+        } catch {
+            print("Помилка при збереженні файлу: \(error)")
+        }
+    }
+    
+    func savePostsToFile() {
+        do {
+            let encoder = JSONEncoder()
+            encoder.outputFormatting = .prettyPrinted
+            let data = try encoder.encode(savedPost)
             try data.write(to: path, options: .atomic)
         } catch {
             print("Помилка при збереженні файлу: \(error)")
@@ -40,6 +55,58 @@ struct PostManager {
         } catch {
             print("Помилка при завантаженні файлу: \(error)")
             return nil
+        }
+    }
+    
+    func saveButtonTap(post : Post){
+        if(post.isSaved){
+            savePostToSaved(post: post)
+        } else {
+            deletePostFromSaved(post: post)
+        }
+    }
+    
+    private func savePostToSaved(post : Post){
+        if (!savedPost.contains { $0.id == post.id }) {
+            self.allPost = self.allPost.map { p in
+                var temp = p
+                if(temp.id == post.id){
+                    temp.isSaved = true
+                }
+                return temp
+            }
+            self.listOfPost = self.listOfPost.map { p in
+                var temp = p
+                if(temp.id == post.id){
+                    temp.isSaved = true
+                }
+                return temp
+            }
+            var temp = post
+            temp.isSaved = true
+            self.savedPost.append(temp)
+                }
+    }
+    
+    private func deletePostFromSaved(post : Post){
+        if (savedPost.contains { $0.id == post.id }) {
+            self.allPost = self.allPost.map { p in
+                var temp = p
+                if(temp.id == post.id){
+                    temp.isSaved = false
+                }
+                return temp
+            }
+            self.listOfPost = self.listOfPost.map { p in
+                var temp = p
+                if(temp.id == post.id){
+                    temp.isSaved = false
+                }
+                return temp
+            }
+                       
+            self.savedPost = self.savedPost.filter {$0.id != post.id}
+            
         }
     }
     

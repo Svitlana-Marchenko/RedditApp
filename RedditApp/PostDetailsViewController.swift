@@ -13,13 +13,12 @@ class PostDetailsViewController : UIViewController {
     @IBOutlet private weak var postView: PostView!
     
     func configure(post: Post){
-//        self.postView.post = post
         self.postView.configure(post: post)
     } 
     
     override func viewDidLoad() {
             super.viewDidLoad()
-            postView.delegate = self
+            postView.shareDelegate = self
         }
 }
 

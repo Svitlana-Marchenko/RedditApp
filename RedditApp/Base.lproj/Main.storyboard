@@ -82,7 +82,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XFm-ft-4PN" customClass="PostView" customModule="RedditApp">
-                                                    <rect key="frame" x="0.0" y="0.0" width="393" height="0.33333333333333331"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="393" height="0.33333333333325754"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 </view>

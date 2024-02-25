@@ -14,12 +14,7 @@ class PostListViewController: UIViewController {
         static let postDetailsSegueID = "post_details"
     }
     
-    private var listOfPost = [Post]()
-    
     var path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("postdata.json")
-    
-    private var savedPost = [Post]()
-    private var allPost = [Post]()
     
     private var selectedPost: Post?
     private var showOnlySaved = false
@@ -48,12 +43,12 @@ class PostListViewController: UIViewController {
         if self.showOnlySaved {
             self.showSavedButton.setImage(UIImage.init(systemName: "bookmark.fill"), for: .normal)
             self.searchField.isHidden = false
-            self.listOfPost = self.savedPost
+            PostManager.manager.listOfPost = PostManager.manager.savedPost
         }
         else {
             self.showSavedButton.setImage(UIImage.init(systemName: "bookmark"), for: .normal)
             self.searchField.isHidden = true
-            self.listOfPost=self.allPost
+            PostManager.manager.listOfPost=PostManager.manager.allPost
         }
         self.postTable.reloadData()
         
@@ -73,7 +68,7 @@ class PostListViewController: UIViewController {
         
         self.isLoadingMore = true
         
-        self.savedPost = loadPostsFromFile() ?? []
+        PostManager.manager.savedPost =  PostManager.manager.loadPostsFromFile() ?? []
         
         
         Task {
@@ -81,20 +76,23 @@ class PostListViewController: UIViewController {
             let (post, after) = try await NetworkRequest().fetchPosts(subreddit: "ios", limit: limit, after: af)
             if let posts = post {
                 DispatchQueue.main.async {
-                    
-                    let list = posts.map { p in
-                        var temp = p
-                        if self.savedPost.contains(where: { $0.id == temp.id }) {
-                            temp.isSaved = true
-                        } else {
-                            temp.isSaved = false
+                    if(posts.isEmpty){
+                        PostManager.manager.listOfPost.append(contentsOf:  PostManager.manager.savedPost)
+                        PostManager.manager.allPost.append(contentsOf: PostManager.manager.savedPost)
+                    } else{
+                        let list = posts.map { p in
+                            var temp = p
+                            if PostManager.manager.savedPost.contains(where: { $0.id == temp.id }) {
+                                temp.isSaved = true
+                            } else {
+                                temp.isSaved = false
+                            }
+                            return temp
                         }
-                        return temp
+                        
+                        PostManager.manager.listOfPost.append(contentsOf:  list)
+                        PostManager.manager.allPost.append(contentsOf: list)
                     }
-                    
-                    self.listOfPost.append(contentsOf:  list)
-                    self.allPost.append(contentsOf: list)
-                    //self.savedPost.append(contentsOf: list)
                     self.postTable.reloadData()
                     self.after=after
                     
@@ -126,35 +124,6 @@ class PostListViewController: UIViewController {
         }
     }
     
-    func savePostsToFile() {
-        do {
-            print("Saving data")
-            let encoder = JSONEncoder()
-            encoder.outputFormatting = .prettyPrinted
-            let data = try encoder.encode(self.savedPost)
-            try data.write(to: path, options: .atomic)
-        } catch {
-            print("Помилка при збереженні файлу: \(error)")
-        }
-    }
-    
-    
-    func loadPostsFromFile() -> [Post]? {
-        if !FileManager.default.fileExists(atPath: path.path){
-            return nil
-        }
-        do {
-            print("Load data from file")
-            let data = try Data(contentsOf: path)
-            let decoder = JSONDecoder()
-            let posts = try decoder.decode([Post].self, from: data)
-            return posts
-        } catch {
-            print("Помилка при завантаженні файлу: \(error)")
-            return nil
-        }
-    }
-    
 }
 
 extension PostListViewController: UITableViewDataSource {
@@ -167,7 +136,7 @@ extension PostListViewController: UITableViewDataSource {
         _ tableView: UITableView,
         numberOfRowsInSection section: Int
     ) -> Int {
-        listOfPost.count
+        PostManager.manager.listOfPost.count
     }
     
     func tableView(
@@ -175,19 +144,20 @@ extension PostListViewController: UITableViewDataSource {
         cellForRowAt indexPath: IndexPath
     ) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Const.cellIdentifier, for: indexPath) as! PostCell
-        let rowData = listOfPost[indexPath.row]
+        let rowData = PostManager.manager.listOfPost[indexPath.row]
         cell.configure(post: rowData)
-        cell.postView.delegate=self
+        cell.postView.shareDelegate=self
         return cell
         
     }
 }
+
 extension PostListViewController : UITableViewDelegate{
     func tableView(
         _ tableView: UITableView,
         didSelectRowAt indexPath: IndexPath
     ) {
-        self.selectedPost = self.listOfPost[indexPath.row]
+        self.selectedPost = PostManager.manager.listOfPost[indexPath.row]
         self.performSegue(
             withIdentifier: Const.postDetailsSegueID,
             sender: nil
@@ -209,9 +179,21 @@ extension PostListViewController : UITableViewDelegate{
                let (post, after) = try await NetworkRequest().fetchPosts(subreddit: "ios", limit: limit, after: af)
                if let posts = post {
                    DispatchQueue.main.async {
-                       self.listOfPost.append(contentsOf:  posts)
-                       self.after=after
+                      let list = posts.map { p in
+                           var temp = p
+                           if PostManager.manager.savedPost.contains(where: { $0.id == temp.id }) {
+                               temp.isSaved = true
+                           } else {
+                               temp.isSaved = false
+                           }
+                           return temp
+                       }
+                       
+                       PostManager.manager.listOfPost.append(contentsOf:  list)
+                       PostManager.manager.allPost.append(contentsOf: list)
+                      
                        self.postTable.reloadData()
+                       self.after=after
                    }
                } else{
                    print ("Error while fetching url")
@@ -239,8 +221,8 @@ extension PostListViewController: UITextFieldDelegate {
     ) -> Bool {
         let searchText = (textField.text ?? "") + string
 
-        self.listOfPost =
-        self.savedPost.filter({
+        PostManager.manager.listOfPost =
+        PostManager.manager.savedPost.filter({
             $0.title.lowercased().contains(searchText.lowercased())
         })
 

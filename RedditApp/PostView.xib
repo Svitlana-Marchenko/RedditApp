@@ -123,6 +123,9 @@
                             <color key="tintColor" name="icon"/>
                             <state key="normal" title="Button"/>
                             <buttonConfiguration key="configuration" style="plain" image="bookmark" catalog="system" title=""/>
+                            <connections>
+                                <action selector="saveButtonTap:" destination="-1" eventType="touchUpInside" id="SgH-OW-YaF"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4qy-Jq-pV1">
                             <rect key="frame" x="160.66666666666666" y="2.6666666666666856" width="50.333333333333343" height="25"/>

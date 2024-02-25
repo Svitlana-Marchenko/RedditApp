@@ -10,7 +10,7 @@ import UIKit
 class PostView: UIView {
     let kCONTENT_XIB_NAME = "PostView"
     
-    weak var delegate: ShareButtonDelegate?
+    weak var shareDelegate: ShareButtonDelegate?
 
     @IBOutlet private var contentView: UIView!
     
@@ -37,7 +37,21 @@ class PostView: UIView {
         
         if let postToShare = post {
             guard let url = URL(string: postToShare.url) else {return}
-            delegate?.didTapShareButton(url: url)
+            shareDelegate?.didTapShareButton(url: url)
+        } else {
+            print("Error while getting post")
+            return
+        }
+    }
+    
+    @IBAction func saveButtonTap(_ sender: Any) {
+        print("Tap save button")
+        if let postToSave = post {
+            self.postSaveButton.setImage(!postToSave.isSaved ? UIImage.init(systemName: "bookmark.fill"): UIImage.init(systemName: "bookmark"), for: .normal)
+                var temp = postToSave
+            temp.isSaved.toggle()
+            self.post=temp
+            PostManager.manager.saveButtonTap(post: temp)
         } else {
             print("Error while getting post")
             return
