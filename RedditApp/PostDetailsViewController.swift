@@ -26,11 +26,7 @@ extension PostDetailsViewController : ShareButtonDelegate {
     
     func didTapShareButton(url:URL) {
         print("ttttt")
-       // guard let url = URL(string: "https://example.com") else { return }
         let activityViewController = UIActivityViewController(activityItems: [url], applicationActivities: nil)
                 self.present(activityViewController, animated: true, completion: nil)
     }
-    
-    
 }
-

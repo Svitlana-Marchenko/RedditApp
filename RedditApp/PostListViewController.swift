@@ -14,8 +14,6 @@ class PostListViewController: UIViewController {
         static let postDetailsSegueID = "post_details"
     }
     
-    var path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("postdata.json")
-    
     private var selectedPost: Post?
     private var showOnlySaved = false
     
@@ -38,7 +36,7 @@ class PostListViewController: UIViewController {
     
     @IBAction func showSavedButtonTap(_ sender: Any) {
         self.showOnlySaved.toggle()
-        print(self.showOnlySaved ? "Showing saved posts": "Showing all posts")
+        print(self.showOnlySaved ? "Show saved posts" : "Show all posts")
         
         if self.showOnlySaved {
             self.showSavedButton.setImage(UIImage.init(systemName: "bookmark.fill"), for: .normal)
@@ -52,9 +50,7 @@ class PostListViewController: UIViewController {
         }
         self.postTable.reloadData()
         
-    }
-    
-    
+    }    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -104,7 +100,7 @@ class PostListViewController: UIViewController {
         }
         
         self.postTable.delegate = self
-        self.postTable.dataSource=self
+        self.postTable.dataSource = self
         self.searchField.delegate = self
     }
     
@@ -206,7 +202,7 @@ extension PostListViewController : UITableViewDelegate{
 }
 
 extension PostListViewController : ShareButtonDelegate {
-    func didTapShareButton(url: URL) {
+    func didTapShareButton(url:URL) {
         print("ttttt")
         let activityViewController = UIActivityViewController(activityItems: [url], applicationActivities: nil)
                 self.present(activityViewController, animated: true, completion: nil)
@@ -219,13 +215,11 @@ extension PostListViewController: UITextFieldDelegate {
         shouldChangeCharactersIn range: NSRange,
         replacementString string: String
     ) -> Bool {
-        let searchText = (textField.text ?? "") + string
-
+        let search = (textField.text ?? "") + string
         PostManager.manager.listOfPost =
         PostManager.manager.savedPost.filter({
-            $0.title.lowercased().contains(searchText.lowercased())
+            $0.title.lowercased().contains(search.lowercased())
         })
-
         postTable.reloadData()
         return true
     }

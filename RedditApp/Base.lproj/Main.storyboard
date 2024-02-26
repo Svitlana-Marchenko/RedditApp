@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="6rU-uU-b9I" kind="relationship" relationship="rootViewController" id="8Gv-cv-f5O"/>
+                        <segue destination="6rU-uU-b9I" kind="relationship" relationship="rootViewController" id="0WB-Jh-JBd"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iEe-vj-SMN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -81,16 +81,21 @@
                                             <rect key="frame" x="0.0" y="0.0" width="393" height="51.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XFm-ft-4PN" customClass="PostView" customModule="RedditApp">
-                                                    <rect key="frame" x="0.0" y="0.0" width="393" height="0.33333333333325754"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VfE-W9-x3J" customClass="PostView" customModule="RedditApp" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="393" height="51.666666666666664"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 </view>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="VfE-W9-x3J" secondAttribute="bottom" id="YbU-Lp-sHi"/>
+                                                <constraint firstAttribute="trailing" secondItem="VfE-W9-x3J" secondAttribute="trailing" id="ZSB-wE-T26"/>
+                                                <constraint firstAttribute="bottom" secondItem="VfE-W9-x3J" secondAttribute="bottom" id="pnT-t0-cSj"/>
+                                                <constraint firstItem="VfE-W9-x3J" firstAttribute="top" secondItem="PJW-EH-rfU" secondAttribute="top" id="r0B-te-YRM"/>
+                                                <constraint firstItem="VfE-W9-x3J" firstAttribute="leading" secondItem="PJW-EH-rfU" secondAttribute="leading" id="wnt-vw-Xw5"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="postView" destination="XFm-ft-4PN" id="c2l-0K-faI"/>
-                                            <segue destination="Ref-zz-h8f" kind="show" identifier="post_details" trigger="accessoryAction" id="oHK-E2-Sp3"/>
+                                            <outlet property="postView" destination="VfE-W9-x3J" id="kcn-1X-BcW"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -114,6 +119,7 @@
                         <outlet property="postTable" destination="BBx-Ou-hv4" id="AjC-Iz-wfS"/>
                         <outlet property="searchField" destination="jnt-tN-Hqh" id="iI3-bG-Shn"/>
                         <outlet property="showSavedButton" destination="KBX-c6-4wZ" id="vDG-ep-wAg"/>
+                        <segue destination="Ref-zz-h8f" kind="show" identifier="post_details" id="LEi-UG-XsC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HBM-JV-nvW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
