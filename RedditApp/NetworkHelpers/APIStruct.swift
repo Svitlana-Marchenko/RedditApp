@@ -44,28 +44,3 @@ struct RedditAPIImages: Codable {
 struct RedditAPISourceImage: Codable {
     let url: String
 }
-
-
-//{
-//    "data": {
-//        "children": [
-//            {
-//                "data": {
-//                    "author_fullname": "t2_2llnenyz",
-//                    "title": "Apple, please add gradually increasing volume for Alarms. There is no excuse to not have such a simple feature in 2024!",
-//                    "downs": 0,
-//                    "ups": 1087,
-//                    "preview": {
-//                        "images": [
-//                            {
-//                                "source": {
-//                                    "url": "https://preview.redd.it/4c3ktvkljqhc1.png?auto=webp&amp;s=01caf635ab0638b9c2f4cd554a26f12632d52497",
-//                                },
-//                            }
-//                        ],
-//                    },
-//                }
-//            }
-//        ],
-//    }
-//}

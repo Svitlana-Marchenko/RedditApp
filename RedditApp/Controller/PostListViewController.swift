@@ -25,7 +25,8 @@ class PostListViewController: UIViewController {
     private var after:String? = ""
     private var isLoadingMore = false
     
-    @IBOutlet weak var searchField: UITextField!
+    @IBOutlet weak var searchField: UISearchBar!
+    //@IBOutlet weak var searchField: UITextField!
     
     @IBOutlet weak var postSubreddit: UILabel!
     @IBOutlet weak var postTable: UITableView!
@@ -211,20 +212,18 @@ extension PostListViewController : PostButtonsDelegate {
     }
 }
 
-extension PostListViewController: UITextFieldDelegate {
-    func textField(
-        _ textField: UITextField,
-        shouldChangeCharactersIn range: NSRange,
-        replacementString string: String
-    ) -> Bool {
-        let search = (textField.text ?? "") + string
-        PostManager.manager.listOfPost =
-        PostManager.manager.savedPost.filter({
-            $0.title.lowercased().contains(search.lowercased())
-        })
-        postTable.reloadData()
-        return true
-    }
+extension PostListViewController: UISearchBarDelegate {
+
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+            if searchText.isEmpty {
+                PostManager.manager.listOfPost = PostManager.manager.savedPost
+            } else {
+                PostManager.manager.listOfPost = PostManager.manager.savedPost.filter { post in
+                    return post.title.lowercased().contains(searchText.lowercased())
+                }
+            }
+            postTable.reloadData()
+        }
 }
 
 extension PostListViewController : UpdateTableDelegat {
