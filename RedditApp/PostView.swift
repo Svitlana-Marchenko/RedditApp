@@ -10,7 +10,7 @@ import UIKit
 class PostView: UIView {
     let kCONTENT_XIB_NAME = "PostView"
     
-    weak var shareDelegate: ShareButtonDelegate?
+    weak var delegate: PostButtonsDelegate?
 
     @IBOutlet private var contentView: UIView!
     
@@ -37,7 +37,7 @@ class PostView: UIView {
         
         if let postToShare = post {
             guard let url = URL(string: postToShare.url) else {return}
-            shareDelegate?.didTapShareButton(url: url)
+            delegate?.didTapShareButton(url: url)
         } else {
             print("Error while getting post")
             return
@@ -51,7 +51,7 @@ class PostView: UIView {
                 var temp = postToSave
             temp.isSaved.toggle()
             self.post=temp
-            PostManager.manager.saveButtonTap(post: temp)
+            self.delegate?.didTapSaveButton(post: temp)
         } else {
             print("Error while getting post")
             return
@@ -100,6 +100,7 @@ class PostView: UIView {
     }
     
     func prepareForCellReuse(){
+        self.postImage.image=nil
         self.postImage.contentMode = .scaleAspectFill
     }
     

@@ -27,7 +27,7 @@ class PostManager {
             let data = try encoder.encode(posts)
             try data.write(to: path, options: .atomic)
         } catch {
-            print("Помилка при збереженні файлу: \(error)")
+            print("Error while saving post: \(error)")
         }
     }
     
@@ -38,7 +38,7 @@ class PostManager {
             let data = try encoder.encode(savedPost)
             try data.write(to: path, options: .atomic)
         } catch {
-            print("Помилка при збереженні файлу: \(error)")
+            print("Error while saving post: \(error)")
         }
     }
     
@@ -53,7 +53,7 @@ class PostManager {
             let posts = try decoder.decode([Post].self, from: data)
             return posts
         } catch {
-            print("Помилка при завантаженні файлу: \(error)")
+            print("Error while getting post: \(error)")
             return nil
         }
     }
@@ -104,17 +104,7 @@ class PostManager {
                 }
                 return temp
             }
-                       
             self.savedPost = self.savedPost.filter {$0.id != post.id}
-            
         }
     }
-    
 }
-//if let permalink = redditPost?.data.permalink {
-//    let urlString = "https://www.reddit.com\(permalink)"
-//    if let url = URL(string: urlString) {
-//        let activityViewController = UIActivityViewController(activityItems: [url], applicationActivities: nil)
-//        present(activityViewController, animated: true)
-//    }
-//}

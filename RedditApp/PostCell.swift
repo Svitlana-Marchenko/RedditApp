@@ -10,7 +10,6 @@ import UIKit
 
 class PostCell: UITableViewCell{
     
-    //@IBOutlet weak var postView: PostView!
     @IBOutlet weak var postView: PostView!
     
     override func prepareForReuse() {

@@ -12,21 +12,27 @@ class PostDetailsViewController : UIViewController {
     
     @IBOutlet private weak var postView: PostView!
     
+    weak var delegat : UpdateTableDelegat?
+    
     func configure(post: Post){
         self.postView.configure(post: post)
     } 
     
     override func viewDidLoad() {
             super.viewDidLoad()
-            postView.shareDelegate = self
+            postView.delegate = self
         }
 }
 
-extension PostDetailsViewController : ShareButtonDelegate {
+extension PostDetailsViewController : PostButtonsDelegate {
     
     func didTapShareButton(url:URL) {
-        print("ttttt")
         let activityViewController = UIActivityViewController(activityItems: [url], applicationActivities: nil)
                 self.present(activityViewController, animated: true, completion: nil)
+    }
+    
+    func didTapSaveButton(post: Post) {
+        PostManager.manager.saveButtonTap(post: post)
+        delegat?.didUpdateSavedPost()
     }
 }

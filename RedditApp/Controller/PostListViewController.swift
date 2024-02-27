@@ -34,7 +34,6 @@ class PostListViewController: UIViewController {
     
     @IBAction func showSavedButtonTap(_ sender: Any) {
         self.showOnlySaved.toggle()
-        print(self.showOnlySaved ? "Show saved posts" : "Show all posts")
         
         if self.showOnlySaved {
             self.showSavedButton.setImage(UIImage.init(systemName: "bookmark.fill"), for: .normal)
@@ -109,6 +108,7 @@ class PostListViewController: UIViewController {
         switch segue.identifier {
         case Const.postDetailsSegueID:
             let nextVc = segue.destination as! PostDetailsViewController
+            nextVc.delegat=self
             DispatchQueue.main.async {
                 if let post = self.selectedPost {
                     nextVc.configure(post: post)
@@ -140,7 +140,7 @@ extension PostListViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: Const.cellIdentifier, for: indexPath) as! PostCell
         let rowData = PostManager.manager.listOfPost[indexPath.row]
         cell.configure(post: rowData)
-        cell.postView.shareDelegate=self
+        cell.postView.delegate=self
         return cell
         
     }
@@ -199,10 +199,14 @@ extension PostListViewController : UITableViewDelegate{
     }
 }
 
-extension PostListViewController : ShareButtonDelegate {
+extension PostListViewController : PostButtonsDelegate {
     func didTapShareButton(url:URL) {
         let activityViewController = UIActivityViewController(activityItems: [url], applicationActivities: nil)
                 self.present(activityViewController, animated: true, completion: nil)
+    }
+    
+    func didTapSaveButton(post: Post) {
+        PostManager.manager.saveButtonTap(post: post)
     }
 }
 
@@ -219,5 +223,16 @@ extension PostListViewController: UITextFieldDelegate {
         })
         postTable.reloadData()
         return true
+    }
+}
+
+extension PostListViewController : UpdateTableDelegat {
+    func didUpdateSavedPost() {
+        if(self.showOnlySaved){
+            PostManager.manager.listOfPost = PostManager.manager.listOfPost.filter { post in
+                post.isSaved == true
+            }
+        }
+        self.postTable.reloadData()
     }
 }
