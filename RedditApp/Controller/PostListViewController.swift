@@ -44,6 +44,7 @@ class PostListViewController: UIViewController {
             self.showSavedButton.setImage(UIImage.init(systemName: "bookmark"), for: .normal)
             self.searchField.isHidden = true
             PostManager.manager.listOfPost=PostManager.manager.allPost
+            self.searchField.text = ""
         }
         self.postTable.reloadData()
         
