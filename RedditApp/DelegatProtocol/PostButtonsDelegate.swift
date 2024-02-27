@@ -8,6 +8,6 @@
 import Foundation
 import UIKit
 
-protocol ShareButtonDelegate: AnyObject {
+protocol PostButtonsDelegate: AnyObject {
     func didTapShareButton(url : URL)
 }

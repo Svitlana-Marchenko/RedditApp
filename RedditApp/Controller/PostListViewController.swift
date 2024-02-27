@@ -25,8 +25,6 @@ class PostListViewController: UIViewController {
     private var after:String? = ""
     private var isLoadingMore = false
     
-    static let controller = PostListViewController()
-    
     @IBOutlet weak var searchField: UITextField!
     
     @IBOutlet weak var postSubreddit: UILabel!
@@ -64,7 +62,7 @@ class PostListViewController: UIViewController {
         
         self.isLoadingMore = true
         
-        PostManager.manager.savedPost =  PostManager.manager.loadPostsFromFile() ?? []
+        PostManager.manager.savedPost = PostManager.manager.loadPostsFromFile() ?? []
         
         
         Task {
@@ -203,7 +201,6 @@ extension PostListViewController : UITableViewDelegate{
 
 extension PostListViewController : ShareButtonDelegate {
     func didTapShareButton(url:URL) {
-        print("ttttt")
         let activityViewController = UIActivityViewController(activityItems: [url], applicationActivities: nil)
                 self.present(activityViewController, animated: true, completion: nil)
     }
