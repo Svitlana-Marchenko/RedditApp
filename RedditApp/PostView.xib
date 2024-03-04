@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PostView" customModule="RedditApp" customModuleProvider="target">
             <connections>
                 <outlet property="contentView" destination="iN0-l3-epB" id="r0Q-hD-tj6"/>
+                <outlet property="postBookMarkView" destination="VjB-cA-cNO" id="eb2-fb-SDy"/>
                 <outlet property="postCommentButton" destination="pUq-fH-FFT" id="sxo-Bn-Pt2"/>
                 <outlet property="postCommentNum" destination="d5D-Bk-nsK" id="DOH-qO-QCO"/>
                 <outlet property="postDomain" destination="5U9-dM-ewE" id="f0P-S8-vPF"/>
@@ -108,6 +109,9 @@
                             <color key="tintColor" name="icon"/>
                             <state key="normal" title="Button"/>
                             <buttonConfiguration key="configuration" style="plain" image="message.badge" catalog="system" title=""/>
+                            <connections>
+                                <action selector="commentButtonTap:" destination="-1" eventType="touchUpInside" id="hbX-vk-8l2"/>
+                            </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="lNum" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JMc-am-jGM">
                             <rect key="frame" x="211" y="8" width="28" height="14"/>
@@ -154,17 +158,25 @@
                         <constraint firstItem="d5D-Bk-nsK" firstAttribute="leading" secondItem="pUq-fH-FFT" secondAttribute="trailing" id="uWB-QF-AEa"/>
                     </constraints>
                 </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VjB-cA-cNO">
+                    <rect key="frame" x="0.0" y="129" width="442" height="200"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="wlQ-fR-a0C" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="0Al-Zb-pff"/>
+                <constraint firstItem="VjB-cA-cNO" firstAttribute="top" secondItem="4Gl-G3-79U" secondAttribute="bottom" id="LKe-F2-Mjy"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="top" secondItem="4Gl-G3-79U" secondAttribute="top" id="RDO-ah-3IB"/>
+                <constraint firstItem="jD9-gR-NX4" firstAttribute="top" secondItem="VjB-cA-cNO" secondAttribute="bottom" id="Sfb-GZ-ccd"/>
                 <constraint firstItem="jD9-gR-NX4" firstAttribute="top" secondItem="wlQ-fR-a0C" secondAttribute="bottom" id="Shw-bZ-Rib"/>
                 <constraint firstItem="4Gl-G3-79U" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="T8k-p5-oBd"/>
+                <constraint firstItem="VjB-cA-cNO" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Trn-QY-2gA"/>
                 <constraint firstItem="4Gl-G3-79U" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="bkB-CR-t7K"/>
                 <constraint firstItem="wlQ-fR-a0C" firstAttribute="top" secondItem="4Gl-G3-79U" secondAttribute="bottom" id="dIs-Ne-56p"/>
                 <constraint firstItem="jD9-gR-NX4" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="gI4-52-a0E"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="VjB-cA-cNO" secondAttribute="trailing" id="hVh-nE-q4X"/>
                 <constraint firstItem="jD9-gR-NX4" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="riH-Li-yVQ"/>
                 <constraint firstItem="wlQ-fR-a0C" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="zYI-Lz-aaR"/>
             </constraints>
@@ -175,8 +187,8 @@
     <resources>
         <image name="bookmark" catalog="system" width="110" height="128"/>
         <image name="heart" catalog="system" width="128" height="107"/>
-        <image name="message.badge" catalog="system" width="128" height="122"/>
-        <image name="paperplane" catalog="system" width="128" height="119"/>
+        <image name="message.badge" catalog="system" width="32" height="32"/>
+        <image name="paperplane" catalog="system" width="32" height="32"/>
         <namedColor name="background">
             <color red="0.6380000114440918" green="0.55199998617172241" blue="0.87599998712539673" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>

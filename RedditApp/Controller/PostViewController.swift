@@ -57,6 +57,7 @@ class PostViewController: UIViewController {
                 print ("Error while fetching url")
             }
         }
+        
     }
     
     

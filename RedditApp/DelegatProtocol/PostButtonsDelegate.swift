@@ -11,4 +11,5 @@ import UIKit
 protocol PostButtonsDelegate: AnyObject {
     func didTapShareButton(url : URL)
     func didTapSaveButton(post : Post)
+   // func didTapCommentButton(post : Post)
 }

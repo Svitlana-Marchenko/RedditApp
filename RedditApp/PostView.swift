@@ -29,8 +29,17 @@ class PostView: UIView {
     @IBOutlet private weak var postSaveButton: UIButton!
     @IBOutlet private weak var postLikeButton: UIButton!
     
+
+    @IBOutlet weak var postBookMarkView: UIView!
+    
     var post: Post?
     
+    private var doubleTapGesture: UITapGestureRecognizer!
+    
+    @IBAction func commentButtonTap(_ sender: Any) {
+        print("Tap comment button")
+        
+    }
     
     @IBAction func shareButtonTap(_ sender: Any) {
         print("Tap share button")
@@ -58,6 +67,32 @@ class PostView: UIView {
         }
     }
     
+    @objc func didDoubleTap() {
+        print("Double tap recognised")
+        if let postToSave = post {
+            saveButtonTap(postSaveButton as Any)
+            self.drawBookMark(in: self.postBookMarkView, filled: !postToSave.isSaved)
+            
+            UIView.transition(
+                with: self,
+                duration: 0.5,
+                options: .transitionCrossDissolve,
+                animations: { self.postBookMarkView.isHidden = false },
+                completion: { _ in
+                    UIView.transition(
+                        with: self,
+                        duration: 0.5,
+                        options: .transitionCrossDissolve,
+                        animations: { self.postBookMarkView.isHidden = true }
+                    )
+                }
+            )
+        } else {
+            print("Error while getting post")
+            return
+        }
+    }
+    
     override init(frame: CGRect) {
             super.init(frame: frame)
             commonInit()
@@ -74,7 +109,6 @@ class PostView: UIView {
         }
     
     func configure (post: Post){
-        
         self.post=post
         self.postUsername.text = post.username
         self.postTitle.text = post.title
@@ -85,27 +119,68 @@ class PostView: UIView {
         self.postSaveButton.setImage(post.isSaved ? UIImage.init(systemName: "bookmark.fill"): UIImage.init(systemName: "bookmark"), for: .normal)
         
         let defaultImage = UIImage(systemName: "questionmark.circle")
+
         if post.imageURL != "" {
             self.postImage.sd_setImage(with: URL(string: post.imageURL)) { (image, error, _, _) in
                 if error != nil {
-                    self.postImage.image = defaultImage
                     self.postImage.contentMode = .scaleAspectFit
+                    self.postImage.image = defaultImage
                     print ("Error while fetching image url")
                 }
             }
         } else {
-            self.postImage.image = defaultImage
             self.postImage.contentMode = .scaleAspectFit
+            self.postImage.image = defaultImage
         }
+        self.postBookMarkView.backgroundColor = UIColor.clear
+        self.postBookMarkView.isHidden = true
+        
+        self.doubleTapGesture = UITapGestureRecognizer.init()
+        self.doubleTapGesture.addTarget(self, action: #selector(didDoubleTap))
+        self.doubleTapGesture.numberOfTapsRequired=2
+        self.doubleTapGesture.delaysTouchesBegan=true
+        
+        self.contentView.gestureRecognizers?.forEach {self.contentView.removeGestureRecognizer($0)}
+        self.contentView.addGestureRecognizer(self.doubleTapGesture)
     }
     
+  
     func prepareForCellReuse(){
-        self.postImage.image=nil
         self.postImage.contentMode = .scaleAspectFill
+        self.postImage.image=nil
     }
-    
 
-    
+    private func drawBookMark(in view: UIView, filled: Bool){
+        
+        let width: CGFloat = CGFloat(Int(view.bounds.width/8))
+        let height: CGFloat = CGFloat(Int(view.bounds.height/3))
+
+        view.layer.sublayers?.forEach { $0.removeFromSuperlayer() }
+        
+        let path = UIBezierPath()
+
+        path.move(to: CGPoint(x: view.bounds.midX - width/2,
+                                  y: view.bounds.midY - height/2))
+            path.addLine(to: CGPoint(x: view.bounds.midX + width/2,
+                                     y: view.bounds.midY - height/2))
+            path.addLine(to: CGPoint(x: view.bounds.midX + width/2,
+                                     y: view.bounds.midY + height/2))
+            path.addLine(to: CGPoint(x: view.bounds.midX,
+                                     y: view.bounds.midY))
+            path.addLine(to: CGPoint(x: view.bounds.midX - width/2,
+                                     y: view.bounds.midY + height/2))
+            path.close()
+
+        let shapeLayer = CAShapeLayer()
+        shapeLayer.path = path.cgPath
+        shapeLayer.strokeColor = UIColor(named: "icon")?.cgColor ?? UIColor.black.cgColor
+        shapeLayer.fillColor = filled ? (UIColor(named: "background")?.cgColor ?? UIColor.black.cgColor) : UIColor.clear.cgColor
+
+
+        shapeLayer.lineWidth = 5
+
+        view.layer.addSublayer(shapeLayer)
+    }
 }
     
 extension UIView

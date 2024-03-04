@@ -16,7 +16,7 @@ class PostDetailsViewController : UIViewController {
     
     func configure(post: Post){
         self.postView.configure(post: post)
-    } 
+    }
     
     override func viewDidLoad() {
             super.viewDidLoad()

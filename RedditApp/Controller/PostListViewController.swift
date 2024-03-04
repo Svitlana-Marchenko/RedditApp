@@ -26,7 +26,6 @@ class PostListViewController: UIViewController {
     private var isLoadingMore = false
     
     @IBOutlet weak var searchField: UISearchBar!
-    //@IBOutlet weak var searchField: UITextField!
     
     @IBOutlet weak var postSubreddit: UILabel!
     @IBOutlet weak var postTable: UITableView!
