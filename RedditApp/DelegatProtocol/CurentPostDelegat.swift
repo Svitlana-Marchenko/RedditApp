@@ -8,6 +8,6 @@
 import Foundation
 import UIKit
 
-protocol UpdateTableDelegat: AnyObject {
+protocol CurentPostDelegat: AnyObject {
     func didUpdateSavedPost()
 }
