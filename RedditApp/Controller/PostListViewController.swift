@@ -112,7 +112,7 @@ class PostListViewController: UIViewController {
             nextVc.delegat=self
             DispatchQueue.main.async {
                 if let post = self.selectedPost {
-                    nextVc.configure(post: post)
+                    nextVc.delegat?.post = post
                 }
             }
         default: break
@@ -148,16 +148,6 @@ extension PostListViewController: UITableViewDataSource {
 }
 
 extension PostListViewController : UITableViewDelegate{
-    func tableView(
-        _ tableView: UITableView,
-        didSelectRowAt indexPath: IndexPath
-    ) {
-        self.selectedPost = PostManager.manager.listOfPost[indexPath.row]
-        self.performSegue(
-            withIdentifier: Const.postDetailsSegueID,
-            sender: nil
-        )
-    }
     
    func scrollViewDidScroll(_ scrollView: UIScrollView) {
        
@@ -201,6 +191,14 @@ extension PostListViewController : UITableViewDelegate{
 }
 
 extension PostListViewController : PostButtonsDelegate {
+    func didTapCommentButton(post: Post) {
+        self.selectedPost = post
+        self.performSegue(
+            withIdentifier: Const.postDetailsSegueID,
+            sender: nil
+        )
+    }
+    
     func didTapShareButton(url:URL) {
         let activityViewController = UIActivityViewController(activityItems: [url], applicationActivities: nil)
                 self.present(activityViewController, animated: true, completion: nil)
@@ -225,7 +223,16 @@ extension PostListViewController: UISearchBarDelegate {
         }
 }
 
-extension PostListViewController : UpdateTableDelegat {
+extension PostListViewController : CurentPostDelegat {
+    var post: Post? {
+        get {
+            return self.selectedPost
+        }
+        set{
+            self.selectedPost=newValue
+        }
+    }
+    
     func didUpdateSavedPost() {
         if(self.showOnlySaved){
             PostManager.manager.listOfPost = PostManager.manager.listOfPost.filter { post in

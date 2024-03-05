@@ -10,4 +10,5 @@ import UIKit
 
 protocol CurentPostDelegat: AnyObject {
     func didUpdateSavedPost()
+    var post : Post? {get set}
 }

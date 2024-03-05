@@ -12,19 +12,29 @@ class PostDetailsViewController : UIViewController {
     
     @IBOutlet private weak var postView: PostView!
     
-    weak var delegat : UpdateTableDelegat?
+    weak var delegat : CurentPostDelegat?
     
-    func configure(post: Post){
-        self.postView.configure(post: post)
+    func configure(with post: Post?){
+        if let postToConfig = post {
+            self.postView.configure(post: postToConfig)
+        } else{
+            print("Error while getting post")
+            return
+        }
     }
     
     override func viewDidLoad() {
-            super.viewDidLoad()
-            postView.delegate = self
-        }
+        super.viewDidLoad()
+        postView.delegate = self
+        configure(with: delegat?.post)
+    }
 }
 
 extension PostDetailsViewController : PostButtonsDelegate {
+    func didTapCommentButton(post: Post) {
+        print("Comment button in post details view tap")
+    }
+    
     
     func didTapShareButton(url:URL) {
         let activityViewController = UIActivityViewController(activityItems: [url], applicationActivities: nil)

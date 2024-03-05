@@ -29,8 +29,9 @@ class PostView: UIView {
     @IBOutlet private weak var postSaveButton: UIButton!
     @IBOutlet private weak var postLikeButton: UIButton!
     
-
-    @IBOutlet weak var postBookMarkView: UIView!
+    @IBOutlet private weak var postBookMarkViewFilled: UIView!
+    
+    @IBOutlet private weak var postBookMarkView: UIView!
     
     var post: Post?
     
@@ -39,11 +40,16 @@ class PostView: UIView {
     @IBAction func commentButtonTap(_ sender: Any) {
         print("Tap comment button")
         
+        if let postToDetails = post {
+            delegate?.didTapCommentButton(post: postToDetails)
+        } else {
+            print("Error while getting post")
+            return
+        }
     }
     
     @IBAction func shareButtonTap(_ sender: Any) {
         print("Tap share button")
-        
         if let postToShare = post {
             guard let url = URL(string: postToShare.url) else {return}
             delegate?.didTapShareButton(url: url)
@@ -71,19 +77,30 @@ class PostView: UIView {
         print("Double tap recognised")
         if let postToSave = post {
             saveButtonTap(postSaveButton as Any)
-            self.drawBookMark(in: self.postBookMarkView, filled: !postToSave.isSaved)
-            
+           
             UIView.transition(
                 with: self,
                 duration: 0.5,
                 options: .transitionCrossDissolve,
-                animations: { self.postBookMarkView.isHidden = false },
+                animations: {
+                    if(postToSave.isSaved){
+                        self.postBookMarkView.isHidden = false
+                    } else{
+                        self.postBookMarkViewFilled.isHidden = false
+                    }
+                },
                 completion: { _ in
                     UIView.transition(
                         with: self,
                         duration: 0.5,
                         options: .transitionCrossDissolve,
-                        animations: { self.postBookMarkView.isHidden = true }
+                        animations: {
+                            if(postToSave.isSaved){
+                                self.postBookMarkView.isHidden = true
+                            } else{
+                                self.postBookMarkViewFilled.isHidden = true
+                            }
+                        }
                     )
                 }
             )
@@ -121,6 +138,7 @@ class PostView: UIView {
         let defaultImage = UIImage(systemName: "questionmark.circle")
 
         if post.imageURL != "" {
+            self.postImage.contentMode = .scaleAspectFill
             self.postImage.sd_setImage(with: URL(string: post.imageURL)) { (image, error, _, _) in
                 if error != nil {
                     self.postImage.contentMode = .scaleAspectFit
@@ -133,7 +151,9 @@ class PostView: UIView {
             self.postImage.image = defaultImage
         }
         self.postBookMarkView.backgroundColor = UIColor.clear
+        self.postBookMarkViewFilled.backgroundColor = UIColor.clear
         self.postBookMarkView.isHidden = true
+        self.postBookMarkViewFilled.isHidden = true
         
         self.doubleTapGesture = UITapGestureRecognizer.init()
         self.doubleTapGesture.addTarget(self, action: #selector(didDoubleTap))
@@ -142,8 +162,13 @@ class PostView: UIView {
         
         self.contentView.gestureRecognizers?.forEach {self.contentView.removeGestureRecognizer($0)}
         self.contentView.addGestureRecognizer(self.doubleTapGesture)
+        
+        DispatchQueue.main.async {
+            self.drawBookMark(in: self.postBookMarkView, filled: false)
+            self.drawBookMark(in: self.postBookMarkViewFilled, filled: true)
+        }
     }
-    
+        
   
     func prepareForCellReuse(){
         self.postImage.contentMode = .scaleAspectFill
@@ -151,7 +176,6 @@ class PostView: UIView {
     }
 
     private func drawBookMark(in view: UIView, filled: Bool){
-        
         let width: CGFloat = CGFloat(Int(view.bounds.width/8))
         let height: CGFloat = CGFloat(Int(view.bounds.height/3))
 
@@ -174,8 +198,9 @@ class PostView: UIView {
         let shapeLayer = CAShapeLayer()
         shapeLayer.path = path.cgPath
         shapeLayer.strokeColor = UIColor(named: "icon")?.cgColor ?? UIColor.black.cgColor
+        
         shapeLayer.fillColor = filled ? (UIColor(named: "background")?.cgColor ?? UIColor.black.cgColor) : UIColor.clear.cgColor
-
+        
 
         shapeLayer.lineWidth = 5
 

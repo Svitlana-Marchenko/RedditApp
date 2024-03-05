@@ -13,6 +13,7 @@
             <connections>
                 <outlet property="contentView" destination="iN0-l3-epB" id="r0Q-hD-tj6"/>
                 <outlet property="postBookMarkView" destination="VjB-cA-cNO" id="eb2-fb-SDy"/>
+                <outlet property="postBookMarkViewFilled" destination="q25-u5-qkV" id="4wz-nt-fDD"/>
                 <outlet property="postCommentButton" destination="pUq-fH-FFT" id="sxo-Bn-Pt2"/>
                 <outlet property="postCommentNum" destination="d5D-Bk-nsK" id="DOH-qO-QCO"/>
                 <outlet property="postDomain" destination="5U9-dM-ewE" id="f0P-S8-vPF"/>
@@ -162,11 +163,17 @@
                     <rect key="frame" x="0.0" y="129" width="442" height="200"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q25-u5-qkV">
+                    <rect key="frame" x="0.0" y="129" width="442" height="200"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="wlQ-fR-a0C" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="0Al-Zb-pff"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="q25-u5-qkV" secondAttribute="trailing" id="4XB-2k-igr"/>
+                <constraint firstItem="q25-u5-qkV" firstAttribute="top" secondItem="4Gl-G3-79U" secondAttribute="bottom" id="8s2-cf-aXf"/>
                 <constraint firstItem="VjB-cA-cNO" firstAttribute="top" secondItem="4Gl-G3-79U" secondAttribute="bottom" id="LKe-F2-Mjy"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="top" secondItem="4Gl-G3-79U" secondAttribute="top" id="RDO-ah-3IB"/>
                 <constraint firstItem="jD9-gR-NX4" firstAttribute="top" secondItem="VjB-cA-cNO" secondAttribute="bottom" id="Sfb-GZ-ccd"/>
@@ -175,8 +182,10 @@
                 <constraint firstItem="VjB-cA-cNO" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Trn-QY-2gA"/>
                 <constraint firstItem="4Gl-G3-79U" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="bkB-CR-t7K"/>
                 <constraint firstItem="wlQ-fR-a0C" firstAttribute="top" secondItem="4Gl-G3-79U" secondAttribute="bottom" id="dIs-Ne-56p"/>
+                <constraint firstItem="q25-u5-qkV" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="dWb-af-YLm"/>
                 <constraint firstItem="jD9-gR-NX4" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="gI4-52-a0E"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="VjB-cA-cNO" secondAttribute="trailing" id="hVh-nE-q4X"/>
+                <constraint firstItem="jD9-gR-NX4" firstAttribute="top" secondItem="q25-u5-qkV" secondAttribute="bottom" id="iUk-3r-6dN"/>
                 <constraint firstItem="jD9-gR-NX4" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="riH-Li-yVQ"/>
                 <constraint firstItem="wlQ-fR-a0C" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="zYI-Lz-aaR"/>
             </constraints>
