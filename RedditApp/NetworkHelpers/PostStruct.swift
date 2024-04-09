@@ -31,7 +31,7 @@ struct Post: Codable {
         self.num_comments = redditPostData.num_comments
         self.time = Post.convertTime(from: redditPostData.created_utc)
         self.url = "https://www.reddit.com/"+redditPostData.permalink
-        self.id = redditPostData.name
+        self.id = redditPostData.id
     }
     
 

@@ -53,6 +53,31 @@ struct NetworkRequest {
             throw error
         }
     }
+    
+    func fetchComments(depth: Int = 3, postId: String, subredit: String = "ios") async throws -> [Comment]? {
+        do {
+            guard let url = URL(string: "https://www.reddit.com/r/\(subredit)/comments/\(postId)/.json") else {throw URLError(message: "error with url")}
+            
+            let (data, _) = try await URLSession.shared.data(from: url)
+            var comments: [Comment] = []
+            
+            let redditData = try JSONDecoder().decode([RedditResponse].self, from: data)
+            
+            for child in redditData[1].data.children {
+                if(child.kind == "t1"){
+                    let commentData = child.data
+                    let comment = Comment(from: commentData)
+                    comments.append(comment)
+                }
+            }
+            
+            return comments
+            
+        } catch {
+            print("error in: \(error)")
+            throw error
+        }
+    }
 }
 
 struct URLError: Error {

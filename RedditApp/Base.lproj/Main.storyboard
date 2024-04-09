@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="tQw-aL-wq1">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="tQw-aL-wq1">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -52,7 +52,7 @@
                                         </connections>
                                     </button>
                                     <searchBar contentMode="redraw" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="z8s-ia-1Ha">
-                                        <rect key="frame" x="2" y="2" width="145" height="46"/>
+                                        <rect key="frame" x="2" y="2" width="144.66666666666666" height="46"/>
                                         <color key="tintColor" name="icon"/>
                                         <color key="barTintColor" name="background"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -146,23 +146,31 @@
                                     <constraint firstAttribute="height" constant="300" id="Wnr-b1-szR"/>
                                 </constraints>
                             </view>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ydQ-tm-jZd">
+                                <rect key="frame" x="0.0" y="403" width="393" height="415"/>
+                            </containerView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="HTq-C0-7eR"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="ydQ-tm-jZd" secondAttribute="trailing" id="66C-2a-VvM"/>
                             <constraint firstItem="DDI-Rx-vmG" firstAttribute="top" secondItem="HTq-C0-7eR" secondAttribute="top" id="K8Y-44-ZRm"/>
+                            <constraint firstItem="ydQ-tm-jZd" firstAttribute="leading" secondItem="HTq-C0-7eR" secondAttribute="leading" id="TH1-lj-Feb"/>
+                            <constraint firstItem="ydQ-tm-jZd" firstAttribute="bottom" secondItem="HTq-C0-7eR" secondAttribute="bottom" id="XzR-nm-LNP"/>
+                            <constraint firstItem="ydQ-tm-jZd" firstAttribute="top" secondItem="DDI-Rx-vmG" secondAttribute="bottom" id="iBj-ol-tCd"/>
                             <constraint firstItem="HTq-C0-7eR" firstAttribute="trailing" secondItem="DDI-Rx-vmG" secondAttribute="trailing" id="jEC-N5-SS8"/>
                             <constraint firstItem="DDI-Rx-vmG" firstAttribute="leading" secondItem="HTq-C0-7eR" secondAttribute="leading" id="qwI-Dq-JK8"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="yA8-Aa-ubX"/>
                     <connections>
+                        <outlet property="commentListView" destination="ydQ-tm-jZd" id="7wp-lM-wDB"/>
                         <outlet property="postView" destination="DDI-Rx-vmG" id="nhC-ql-5tl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ghs-U0-mdM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="172" y="-794"/>
+            <point key="canvasLocation" x="171.75572519083968" y="-794.36619718309862"/>
         </scene>
         <!--Post View Controller-->
         <scene sceneID="tne-QT-ifu">

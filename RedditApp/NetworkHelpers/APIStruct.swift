@@ -31,6 +31,7 @@ struct RedditAPIPostData: Codable {
     let preview: RedditAPIPreview?
     let permalink: String
     let name: String
+    let id: String
 }
 
 struct RedditAPIPreview: Codable {
@@ -44,3 +45,29 @@ struct RedditAPIImages: Codable {
 struct RedditAPISourceImage: Codable {
     let url: String
 }
+
+
+//comment api
+struct RedditResponse: Codable {
+    let data: RedditData
+}
+
+struct RedditData: Codable {
+    let children: [RedditCommentContainer]
+}
+
+struct RedditCommentContainer: Codable {
+    let kind: String
+    let data: RedditComment
+}
+
+struct RedditComment: Codable {
+    let author_fullname: String?
+    let created_utc: Double?
+    let body: String?
+    let ups: Int?
+    let downs: Int?
+    let permalink: String?
+    let id: String?
+}
+

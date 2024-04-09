@@ -21,6 +21,11 @@
 		EAB7914A2B78EC1A00A5CE15 /* APIStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB791492B78EC1A00A5CE15 /* APIStruct.swift */; };
 		EACC6EA92B8360CA00537EC2 /* PostListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EACC6EA82B8360CA00537EC2 /* PostListViewController.swift */; };
 		EACC6EAB2B836E5B00537EC2 /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EACC6EAA2B836E5B00537EC2 /* PostCell.swift */; };
+		EAD958AE2BC342210000F5A0 /* CommentList.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD958AD2BC342210000F5A0 /* CommentList.swift */; };
+		EAD958B02BC342420000F5A0 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD958AF2BC342420000F5A0 /* CommentCell.swift */; };
+		EAD958B22BC3426D0000F5A0 /* CommentDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD958B12BC3426D0000F5A0 /* CommentDetails.swift */; };
+		EAD958B42BC3429B0000F5A0 /* CommentStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD958B32BC3429B0000F5A0 /* CommentStruct.swift */; };
+		EAD958B62BC342C10000F5A0 /* CommentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD958B52BC342C10000F5A0 /* CommentData.swift */; };
 		EADE18662B8A5CD800D5E105 /* PostButtonsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADE18652B8A5CD800D5E105 /* PostButtonsDelegate.swift */; };
 		EAE984912B827E35004BB4B5 /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE984902B827E35004BB4B5 /* PostView.swift */; };
 		EAE984932B827E7F004BB4B5 /* PostView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAE984922B827E7F004BB4B5 /* PostView.xib */; };
@@ -46,6 +51,11 @@
 		EAB791492B78EC1A00A5CE15 /* APIStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIStruct.swift; sourceTree = "<group>"; };
 		EACC6EA82B8360CA00537EC2 /* PostListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListViewController.swift; sourceTree = "<group>"; };
 		EACC6EAA2B836E5B00537EC2 /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
+		EAD958AD2BC342210000F5A0 /* CommentList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentList.swift; sourceTree = "<group>"; };
+		EAD958AF2BC342420000F5A0 /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
+		EAD958B12BC3426D0000F5A0 /* CommentDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentDetails.swift; sourceTree = "<group>"; };
+		EAD958B32BC3429B0000F5A0 /* CommentStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentStruct.swift; sourceTree = "<group>"; };
+		EAD958B52BC342C10000F5A0 /* CommentData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentData.swift; sourceTree = "<group>"; };
 		EADE18652B8A5CD800D5E105 /* PostButtonsDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostButtonsDelegate.swift; sourceTree = "<group>"; };
 		EAE984902B827E35004BB4B5 /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
 		EAE984922B827E7F004BB4B5 /* PostView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostView.xib; sourceTree = "<group>"; };
@@ -84,6 +94,7 @@
 		EA203D2D2B763CBC00C077B4 /* RedditApp */ = {
 			isa = PBXGroup;
 			children = (
+				EAD958A42BC3337E0000F5A0 /* CommentSwiftUi */,
 				EAA354682B8D025E001942B5 /* DelegatProtocol */,
 				EAA354672B8D0237001942B5 /* Controller */,
 				EA97D2A82B8A8BC2007D2B3F /* FileHelpers */,
@@ -137,6 +148,34 @@
 				EA63249A2B8D1B0500413AE4 /* CurentPostDelegat.swift */,
 			);
 			path = DelegatProtocol;
+			sourceTree = "<group>";
+		};
+		EAD958A42BC3337E0000F5A0 /* CommentSwiftUi */ = {
+			isa = PBXGroup;
+			children = (
+				EAD958AC2BC341BE0000F5A0 /* Model */,
+				EAD958AB2BC341AF0000F5A0 /* View */,
+			);
+			path = CommentSwiftUi;
+			sourceTree = "<group>";
+		};
+		EAD958AB2BC341AF0000F5A0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				EAD958AD2BC342210000F5A0 /* CommentList.swift */,
+				EAD958AF2BC342420000F5A0 /* CommentCell.swift */,
+				EAD958B12BC3426D0000F5A0 /* CommentDetails.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		EAD958AC2BC341BE0000F5A0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				EAD958B32BC3429B0000F5A0 /* CommentStruct.swift */,
+				EAD958B52BC342C10000F5A0 /* CommentData.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -230,8 +269,13 @@
 				EAB7914A2B78EC1A00A5CE15 /* APIStruct.swift in Sources */,
 				EA203D312B763CBC00C077B4 /* SceneDelegate.swift in Sources */,
 				EA62E5D52B782D32004AA4F1 /* PostStruct.swift in Sources */,
+				EAD958B22BC3426D0000F5A0 /* CommentDetails.swift in Sources */,
+				EAD958B62BC342C10000F5A0 /* CommentData.swift in Sources */,
 				EACC6EAB2B836E5B00537EC2 /* PostCell.swift in Sources */,
 				EA66D3942B84A32F00BA02F6 /* PostDetailsViewController.swift in Sources */,
+				EAD958AE2BC342210000F5A0 /* CommentList.swift in Sources */,
+				EAD958B42BC3429B0000F5A0 /* CommentStruct.swift in Sources */,
+				EAD958B02BC342420000F5A0 /* CommentCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
