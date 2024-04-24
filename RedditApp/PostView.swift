@@ -150,6 +150,7 @@ class PostView: UIView {
             self.postImage.contentMode = .scaleAspectFit
             self.postImage.image = defaultImage
         }
+        
         self.postBookMarkView.backgroundColor = UIColor.clear
         self.postBookMarkViewFilled.backgroundColor = UIColor.clear
         self.postBookMarkView.isHidden = true
@@ -158,7 +159,18 @@ class PostView: UIView {
         self.doubleTapGesture = UITapGestureRecognizer.init()
         self.doubleTapGesture.addTarget(self, action: #selector(didDoubleTap))
         self.doubleTapGesture.numberOfTapsRequired=2
-        self.doubleTapGesture.delaysTouchesBegan=true
+        
+        //self.doubleTapGesture.delaysTouchesBegan=false
+        
+        self.doubleTapGesture.delaysTouchesBegan=false
+        self.doubleTapGesture.cancelsTouchesInView = false
+        
+        doubleTapGesture.delegate = self
+        
+        self.postBookMarkView.isUserInteractionEnabled = true
+        self.postBookMarkViewFilled.isUserInteractionEnabled = true
+        self.contentView.isUserInteractionEnabled = true
+        self.postImage.isUserInteractionEnabled = true
         
         self.contentView.gestureRecognizers?.forEach {self.contentView.removeGestureRecognizer($0)}
         self.contentView.addGestureRecognizer(self.doubleTapGesture)
