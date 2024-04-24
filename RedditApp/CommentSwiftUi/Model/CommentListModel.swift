@@ -7,7 +7,7 @@
 
 import Foundation
 
-class CommentData : ObservableObject {
+class CommentListModel : ObservableObject {
     
     @Published var comments: [Comment] = []
     
