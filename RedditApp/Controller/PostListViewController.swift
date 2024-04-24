@@ -42,13 +42,22 @@ class PostListViewController: UIViewController {
         }
         else {
             self.showSavedButton.setImage(UIImage.init(systemName: "bookmark"), for: .normal)
+            
             self.searchField.isHidden = true
-            PostManager.manager.listOfPost=PostManager.manager.allPost
+            self.searchField.resignFirstResponder()
+            
+            if(!PostManager.manager.loadedFromNetwork && Network.isConnectedToNetwork()){
+                print("Internet connection appeared")
+                self.isLoadingMore = true
+                loadPosts()
+            } else{
+                PostManager.manager.listOfPost=PostManager.manager.allPost
+            }
             self.searchField.text = ""
         }
         self.postTable.reloadData()
         
-    }    
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,17 +69,32 @@ class PostListViewController: UIViewController {
         
         self.postSubreddit.text=self.subreddit
         
-        self.isLoadingMore = true
+        //self.isLoadingMore = true
         
         PostManager.manager.savedPost = PostManager.manager.loadPostsFromFile() ?? []
         
+        if(Network.isConnectedToNetwork()){
+            self.isLoadingMore = true
+            loadPosts()
+        } else{
+            print("No Internet connection")
+            self.showSavedButtonTap(self)
+            PostManager.manager.allPost.append(contentsOf: PostManager.manager.savedPost)
+        }
         
+        self.postTable.delegate = self
+        self.postTable.dataSource = self
+        self.searchField.delegate = self
+    }
+    
+    
+    private func loadPosts(){
         Task {
             let af = after ?? ""
-            let (post, after) = try await NetworkRequest().fetchPosts(subreddit: "ios", limit: limit, after: af)
+            let (post, after) = try await NetworkRequest().fetchPosts(subreddit: subreddit, limit: limit, after: af)
             if let posts = post {
                 DispatchQueue.main.async {
-                    if(posts.isEmpty){
+                    if(posts.isEmpty && PostManager.manager.allPost.isEmpty){
                         PostManager.manager.listOfPost.append(contentsOf:  PostManager.manager.savedPost)
                         PostManager.manager.allPost.append(contentsOf: PostManager.manager.savedPost)
                     } else{
@@ -84,22 +108,20 @@ class PostListViewController: UIViewController {
                             return temp
                         }
                         
-                        PostManager.manager.listOfPost.append(contentsOf:  list)
-                        PostManager.manager.allPost.append(contentsOf: list)
+                        PostManager.manager.listOfPost = list
+                        PostManager.manager.allPost = list
                     }
                     self.postTable.reloadData()
                     self.after=after
                     
                 }
+                
+                PostManager.manager.loadedFromNetwork = true
             } else{
                 print ("Error while fetching url")
             }
             self.isLoadingMore = false
         }
-        
-        self.postTable.delegate = self
-        self.postTable.dataSource = self
-        self.searchField.delegate = self
     }
     
     override func prepare(
@@ -149,44 +171,43 @@ extension PostListViewController: UITableViewDataSource {
 
 extension PostListViewController : UITableViewDelegate{
     
-   func scrollViewDidScroll(_ scrollView: UIScrollView) {
-       
-       let offsetY = scrollView.contentOffset.y
-       let contentHeight = scrollView.contentSize.height
-       let screenHeight = scrollView.frame.size.height
-
-       if !self.showOnlySaved && !isLoadingMore && offsetY > contentHeight - screenHeight - CGFloat(pToDeload)  {
-           self.isLoadingMore = true
-           Task {
-               
-               guard let af = after else {print("No more posts"); return}
-               
-               let (post, after) = try await NetworkRequest().fetchPosts(subreddit: "ios", limit: limit, after: af)
-               if let posts = post {
-                   DispatchQueue.main.async {
-                      let list = posts.map { p in
-                           var temp = p
-                           if PostManager.manager.savedPost.contains(where: { $0.id == temp.id }) {
-                               temp.isSaved = true
-                           } else {
-                               temp.isSaved = false
-                           }
-                           return temp
-                       }
-                       
-                       PostManager.manager.listOfPost.append(contentsOf:  list)
-                       PostManager.manager.allPost.append(contentsOf: list)
-                      
-                       self.postTable.reloadData()
-                       self.after=after
-                   }
-               } else{
-                   print ("Error while fetching url")
-               }
-               self.isLoadingMore = false
-               
-           }
-       }
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        let offsetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        let screenHeight = scrollView.frame.size.height
+        
+        if !self.showOnlySaved && !isLoadingMore && offsetY > contentHeight - screenHeight - CGFloat(pToDeload)  {
+            self.isLoadingMore = true
+            Task {
+                guard let af = after else {print("No more posts"); return}
+                print("load posts")
+                let (post, after) = try await NetworkRequest().fetchPosts(subreddit: "ios", limit: limit, after: af)
+                if let posts = post {
+                    DispatchQueue.main.async {
+                        let list = posts.map { p in
+                            var temp = p
+                            if PostManager.manager.savedPost.contains(where: { $0.id == temp.id }) {
+                                temp.isSaved = true
+                            } else {
+                                temp.isSaved = false
+                            }
+                            return temp
+                        }
+                        
+                        PostManager.manager.listOfPost.append(contentsOf:  list)
+                        PostManager.manager.allPost.append(contentsOf: list)
+                        
+                        self.postTable.reloadData()
+                        self.after=after
+                    }
+                } else{
+                    print ("Error while fetching url")
+                }
+                self.isLoadingMore = false
+                
+            }
+        }
     }
 }
 
@@ -201,7 +222,7 @@ extension PostListViewController : PostButtonsDelegate {
     
     func didTapShareButton(url:URL) {
         let activityViewController = UIActivityViewController(activityItems: [url], applicationActivities: nil)
-                self.present(activityViewController, animated: true, completion: nil)
+        self.present(activityViewController, animated: true, completion: nil)
     }
     
     func didTapSaveButton(post: Post) {
@@ -210,17 +231,27 @@ extension PostListViewController : PostButtonsDelegate {
 }
 
 extension PostListViewController: UISearchBarDelegate {
-
+    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-            if searchText.isEmpty {
-                PostManager.manager.listOfPost = PostManager.manager.savedPost
-            } else {
-                PostManager.manager.listOfPost = PostManager.manager.savedPost.filter { post in
-                    return post.title.lowercased().contains(searchText.lowercased())
-                }
+        if searchText.isEmpty {
+            PostManager.manager.listOfPost = PostManager.manager.savedPost
+        } else {
+            PostManager.manager.listOfPost = PostManager.manager.savedPost.filter { post in
+                return post.title.lowercased().contains(searchText.lowercased())
             }
-            postTable.reloadData()
         }
+        postTable.reloadData()
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        print("searchBarCancelButtonClicked")
+        self.searchField.resignFirstResponder()
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        print("searchBarSearchButtonClicked")
+        self.searchField.resignFirstResponder()
+    }
 }
 
 extension PostListViewController : CurentPostDelegat {
