@@ -15,6 +15,8 @@ class PostManager {
     var savedPost = [Post]()
     var allPost = [Post]()
     
+    var loadedFromNetwork : Bool = false
+    
     static let manager = PostManager()
     
     var path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("postdata.json")

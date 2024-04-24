@@ -9,22 +9,29 @@ import SwiftUI
 
 struct CommentList: View {
     
-    @ObservedObject private var commentData: CommentData
+    @ObservedObject private var commentData: CommentListModel
     
-    init(commentData: CommentData, navigateToDetails: @escaping (Comment) -> Void) {
+    init(commentData: CommentListModel, navigateToDetails: @escaping (Comment) -> Void) {
         self.commentData = commentData
         self.navigateToDetails = navigateToDetails
     }
     
     let navigateToDetails: (Comment) -> Void
-
+    
     var body: some View {
-        NavigationStack {
-            List(commentData.comments) { comment in
-                Button(action: {
-                    navigateToDetails(comment)
-                }) {
-                    CommentCell(comment: comment)
+        if (!Network.isConnectedToNetwork()) {
+            Text("Comments in offline mode are not available")
+                    .font(.headline)
+                    .foregroundColor(Color("icon"))
+                    
+        } else {
+            NavigationStack {
+                List(commentData.comments) { comment in
+                    Button(action: {
+                        navigateToDetails(comment)
+                    }) {
+                        CommentCell(comment: comment)
+                    }
                 }
             }
         }
@@ -34,7 +41,7 @@ struct CommentList: View {
 struct CommentList_Previews: PreviewProvider {
     static var previews: some View {
         CommentList(
-            commentData: CommentData(postId: "1blwyq2"),
+            commentData: CommentListModel(postId: "1blwyq2"),
             navigateToDetails: {comment in print("Comment details tap")})
     }
 }

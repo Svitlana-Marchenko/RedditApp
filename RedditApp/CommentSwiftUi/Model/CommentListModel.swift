@@ -17,7 +17,9 @@ class CommentListModel : ObservableObject {
     init(subreddit: String = "ios", postId: String = "1blwyq2"){
         self.subreddit = subreddit
         self.postId = postId
-        loadComments()
+        if(Network.isConnectedToNetwork()){
+            loadComments()
+        }
     }
     
     func loadComments () {

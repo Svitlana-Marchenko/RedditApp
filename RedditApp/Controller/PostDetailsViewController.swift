@@ -41,7 +41,7 @@ class PostDetailsViewController : UIViewController {
             return
         }
         
-        let commentData = CommentData(subreddit: "ios", postId: post.id)
+        let commentData = CommentListModel(subreddit: "ios", postId: post.id)
         
         let commentListViewController: UIViewController = UIHostingController(rootView: CommentList(
             commentData: commentData,
