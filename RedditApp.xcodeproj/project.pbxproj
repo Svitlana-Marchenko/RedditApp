@@ -18,6 +18,7 @@
 		EA63249B2B8D1B0500413AE4 /* CurentPostDelegat.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA63249A2B8D1B0500413AE4 /* CurentPostDelegat.swift */; };
 		EA66D3942B84A32F00BA02F6 /* PostDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA66D3932B84A32F00BA02F6 /* PostDetailsViewController.swift */; };
 		EA97D2AC2B8A8C2C007D2B3F /* PostManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA97D2AB2B8A8C2C007D2B3F /* PostManager.swift */; };
+		EA99275C2BC7D801000211A9 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA99275B2BC7D801000211A9 /* Network.swift */; };
 		EAB7914A2B78EC1A00A5CE15 /* APIStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB791492B78EC1A00A5CE15 /* APIStruct.swift */; };
 		EACC6EA92B8360CA00537EC2 /* PostListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EACC6EA82B8360CA00537EC2 /* PostListViewController.swift */; };
 		EACC6EAB2B836E5B00537EC2 /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EACC6EAA2B836E5B00537EC2 /* PostCell.swift */; };
@@ -25,7 +26,7 @@
 		EAD958B02BC342420000F5A0 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD958AF2BC342420000F5A0 /* CommentCell.swift */; };
 		EAD958B22BC3426D0000F5A0 /* CommentDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD958B12BC3426D0000F5A0 /* CommentDetails.swift */; };
 		EAD958B42BC3429B0000F5A0 /* CommentStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD958B32BC3429B0000F5A0 /* CommentStruct.swift */; };
-		EAD958B62BC342C10000F5A0 /* CommentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD958B52BC342C10000F5A0 /* CommentData.swift */; };
+		EAD958B62BC342C10000F5A0 /* CommentListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD958B52BC342C10000F5A0 /* CommentListModel.swift */; };
 		EADE18662B8A5CD800D5E105 /* PostButtonsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADE18652B8A5CD800D5E105 /* PostButtonsDelegate.swift */; };
 		EAE984912B827E35004BB4B5 /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE984902B827E35004BB4B5 /* PostView.swift */; };
 		EAE984932B827E7F004BB4B5 /* PostView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAE984922B827E7F004BB4B5 /* PostView.xib */; };
@@ -48,6 +49,7 @@
 		EA63249A2B8D1B0500413AE4 /* CurentPostDelegat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurentPostDelegat.swift; sourceTree = "<group>"; };
 		EA66D3932B84A32F00BA02F6 /* PostDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailsViewController.swift; sourceTree = "<group>"; };
 		EA97D2AB2B8A8C2C007D2B3F /* PostManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostManager.swift; sourceTree = "<group>"; };
+		EA99275B2BC7D801000211A9 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		EAB791492B78EC1A00A5CE15 /* APIStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIStruct.swift; sourceTree = "<group>"; };
 		EACC6EA82B8360CA00537EC2 /* PostListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListViewController.swift; sourceTree = "<group>"; };
 		EACC6EAA2B836E5B00537EC2 /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
@@ -55,7 +57,7 @@
 		EAD958AF2BC342420000F5A0 /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
 		EAD958B12BC3426D0000F5A0 /* CommentDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentDetails.swift; sourceTree = "<group>"; };
 		EAD958B32BC3429B0000F5A0 /* CommentStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentStruct.swift; sourceTree = "<group>"; };
-		EAD958B52BC342C10000F5A0 /* CommentData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentData.swift; sourceTree = "<group>"; };
+		EAD958B52BC342C10000F5A0 /* CommentListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentListModel.swift; sourceTree = "<group>"; };
 		EADE18652B8A5CD800D5E105 /* PostButtonsDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostButtonsDelegate.swift; sourceTree = "<group>"; };
 		EAE984902B827E35004BB4B5 /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
 		EAE984922B827E7F004BB4B5 /* PostView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostView.xib; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 				EA62E5D22B7828F7004AA4F1 /* NetworkRequest.swift */,
 				EA62E5D42B782D32004AA4F1 /* PostStruct.swift */,
 				EAB791492B78EC1A00A5CE15 /* APIStruct.swift */,
+				EA99275B2BC7D801000211A9 /* Network.swift */,
 			);
 			path = NetworkHelpers;
 			sourceTree = "<group>";
@@ -173,7 +176,7 @@
 			isa = PBXGroup;
 			children = (
 				EAD958B32BC3429B0000F5A0 /* CommentStruct.swift */,
-				EAD958B52BC342C10000F5A0 /* CommentData.swift */,
+				EAD958B52BC342C10000F5A0 /* CommentListModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -267,10 +270,11 @@
 				EACC6EA92B8360CA00537EC2 /* PostListViewController.swift in Sources */,
 				EADE18662B8A5CD800D5E105 /* PostButtonsDelegate.swift in Sources */,
 				EAB7914A2B78EC1A00A5CE15 /* APIStruct.swift in Sources */,
+				EA99275C2BC7D801000211A9 /* Network.swift in Sources */,
 				EA203D312B763CBC00C077B4 /* SceneDelegate.swift in Sources */,
 				EA62E5D52B782D32004AA4F1 /* PostStruct.swift in Sources */,
 				EAD958B22BC3426D0000F5A0 /* CommentDetails.swift in Sources */,
-				EAD958B62BC342C10000F5A0 /* CommentData.swift in Sources */,
+				EAD958B62BC342C10000F5A0 /* CommentListModel.swift in Sources */,
 				EACC6EAB2B836E5B00537EC2 /* PostCell.swift in Sources */,
 				EA66D3942B84A32F00BA02F6 /* PostDetailsViewController.swift in Sources */,
 				EAD958AE2BC342210000F5A0 /* CommentList.swift in Sources */,
