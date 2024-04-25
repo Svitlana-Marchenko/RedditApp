@@ -9,6 +9,7 @@ Used API: https://www.reddit.com/dev/api/
 - Comments Interaction: View and share comments directly from the app.
 - Search Functionality: Find saved posts by their titles.
 - Animations: Experience smooth animations for saving and deleting posts.
+- Dark and Light Mode Support
   
 ## Technology Stack
 Reddit Reader is primarily built using UIKit framework. A portion of the app that handles comments utilizes SwiftUI, which is integrated with the UIKit components.
