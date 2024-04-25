@@ -1,5 +1,6 @@
 # RedditApp
 Reddit Reader is an iOS app designed to browse, save, and interact with posts and comments. 
+Used API: https://www.reddit.com/dev/api/
 
 ## Key Features
 - Browse and Save: Easily view and save posts to access them anytime.
